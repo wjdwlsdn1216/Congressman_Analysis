@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://gohard.iptime.org:5432/roadking_db
+    username: roadking
+    password: roadking123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100 # in (?,?, ... )  in 쿼리로 한번에 땡겨오는 데이터 개수
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+#    org.hibernate.type: trace
