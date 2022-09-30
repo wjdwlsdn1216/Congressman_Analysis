@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Hello</title>
+<title>home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div class="container">
-    <p>hi welcome!</p>
-
+    <div class="container" style="text-align: center;">
+        <h1 style="font-size: xxx-large">닮은꼴 의원 찾기</h1>
+        <div>
+            <form action="/congressman/similar">
+                <input type="text" name="congressmanId" style="font-size: xxx-large">
+                <button type="submit" style="font-size: xxx-large">찾기</button>
+            </form>
+        </div>
 </div> <!-- /container -->
 </body>
 </html>
