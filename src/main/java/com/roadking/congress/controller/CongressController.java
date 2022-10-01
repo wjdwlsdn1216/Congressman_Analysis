@@ -1,6 +1,8 @@
 package com.roadking.congress.controller;
 
 import com.roadking.congress.domain.Congressman;
+import com.roadking.congress.domain.Sns;
+import com.roadking.congress.repository.congressman.dto.CongressmanFlatDto;
 import com.roadking.congress.service.CongressService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
@@ -8,7 +10,6 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.BufferedReader;
@@ -27,7 +28,6 @@ public class CongressController {
     @GetMapping("/api/load/congressman")
     public void apiLoad() throws Exception {
         StringBuilder sb2 = new StringBuilder();
-
 
 
         final String requestUrl = "https://open.assembly.go.kr/portal/openapi/";
@@ -74,11 +74,12 @@ public class CongressController {
 
                 Congressman congressman = new Congressman(name, hjName, enName, bthGbnNm, bthDate, jobResNm, polyNm, origNm, electGbnNm, cmitNm, cmits, reeleGbnNm, units, sex, telNo, email, homepage, staff, secretary, secretary2, monaCd, memTitle, assemAddr);
 
-            congressService.save(congressman);
-        }
+
+                congressService.save(congressman);
+            }
 
         } catch (Exception e) {
-                    e.printStackTrace();
+            e.printStackTrace();
         }
         System.out.println("congressman 데이터 저장완료!");
     }
@@ -91,7 +92,7 @@ public class CongressController {
         //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
         String replaced = congressman.getMemTitle().replace("\r", "<br>");
         congressman.setMemTitle(replaced);
-        model.addAttribute("congressman",congressman);
+        model.addAttribute("congressman", congressman);
         return "congressman/congressmanDetail";
     }
 
@@ -99,13 +100,9 @@ public class CongressController {
     @GetMapping("/congressman/similar")
     public String similar(@RequestParam Long congressmanId, Model model) {
         Congressman congressman = congressService.findOne(congressmanId);
-        model.addAttribute("congressman",congressman);
+        model.addAttribute("congressman", congressman);
         return "congressman/congressmanSimilar";
     }
-
-
-
-
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

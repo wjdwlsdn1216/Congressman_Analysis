@@ -2,6 +2,8 @@ package com.roadking.congress.service;
 
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.repository.CongressmanRepository;
+import com.roadking.congress.repository.congressman.dto.CongressmanFlatDto;
+import com.roadking.congress.repository.congressman.queryrepository.CongressmanQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,20 +16,22 @@ import java.util.List;
 public class CongressService {
 
     private final CongressmanRepository congressmanRepository;
+    private final CongressmanQueryRepository congressmanQueryRepository;
 
     //저장
     @Transactional
-    public Long save(Congressman congressman) {
+    public void save(Congressman congressman) {
         congressmanRepository.save(congressman);
-        return congressman.getId();
     }
+
+
 
     public Congressman findOne(Long id) {
         return congressmanRepository.findOne(id);
     }
 
-    public Congressman findWithSns(Long id) {
-        return congressmanRepository.findOneWithSns(id);
+    public CongressmanFlatDto findWithSns(Long id) {
+        return congressmanQueryRepository.findCongressmanWithSns(id);
     }
 
     public List<Congressman> findAll() {

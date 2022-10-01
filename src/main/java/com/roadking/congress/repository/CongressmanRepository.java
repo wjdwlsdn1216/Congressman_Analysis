@@ -17,15 +17,16 @@ public class CongressmanRepository {
         em.persist(congressman);
     }
 
+
     public Congressman findOne(Long id) {
         return em.find(Congressman.class, id);
     }
 
-    public Congressman findOneWithSns(Long id) {
-        return em.createQuery("select c from Congressman c join Sns s on c.monaCd = s.monaCd where c.id = :id", Congressman.class)
-                .setParameter("id", id)
-                .getSingleResult();
-    }
+//    public Congressman findOneWithSns(Long id) {
+//        return em.createQuery("select c, s from Congressman c join Sns s on c.monaCd = s.monaCd where c.id = :id", Congressman.class)
+//                .setParameter("id", id)
+//                .getSingleResult();
+//    }
 
     public List<Congressman> findAll() {
         return em.createQuery("select c from Congressman c", Congressman.class)

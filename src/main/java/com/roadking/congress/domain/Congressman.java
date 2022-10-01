@@ -16,9 +16,10 @@ public class Congressman {
     @Column(name = "congressman_id")
     private Long id;
 
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "mona_cd")
-//    private Sns sns;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "sns_id")
+    private Sns sns;
+
 
     public Congressman(String name, String hjName, String enName, String bthGbnNm, String bthDate, String jobResNm, String polyNm, String origNm, String electGbnNm, String cmitNm, String cmits, String reeleGbnNm, String units, String sex, String telNo, String email, String homepage, String staff, String secretary, String secretary2, String monaCd, String memTitle, String assemAddr) {
         this.name = name;
