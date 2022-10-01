@@ -2,8 +2,9 @@ package com.roadking.congress.controller;
 
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.domain.Sns;
-import com.roadking.congress.repository.congressman.dto.CongressmanFlatDto;
+import com.roadking.congress.repository.SnsRepository;
 import com.roadking.congress.service.CongressService;
+import com.roadking.congress.service.SnsService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,8 +23,9 @@ import java.net.URL;
 public class CongressController {
 
     private final CongressService congressService;
+    private final SnsService snsService;
 
-    //출처: 역대 국회의원 인적사항 (국회 OpenApi)
+    //출처: 국회의원 인적사항 (국회 OpenApi)
     //json 데이터 congressman table에 저장
     @GetMapping("/api/load/congressman")
     public void apiLoad() throws Exception {
@@ -73,9 +75,14 @@ public class CongressController {
                 String assemAddr = jsonObject.get("ASSEM_ADDR").toString();
 
                 Congressman congressman = new Congressman(name, hjName, enName, bthGbnNm, bthDate, jobResNm, polyNm, origNm, electGbnNm, cmitNm, cmits, reeleGbnNm, units, sex, telNo, email, homepage, staff, secretary, secretary2, monaCd, memTitle, assemAddr);
-
-
                 congressService.save(congressman);
+
+                //update column sns_id in congressman table
+                Sns oneSns = snsService.findSnsByMonaCd(monaCd);
+                Long snsId = oneSns.getId();
+                congressService.updateSnsId(snsId, monaCd);
+
+
             }
 
         } catch (Exception e) {

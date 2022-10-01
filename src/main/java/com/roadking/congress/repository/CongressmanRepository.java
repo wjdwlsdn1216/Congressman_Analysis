@@ -22,12 +22,6 @@ public class CongressmanRepository {
         return em.find(Congressman.class, id);
     }
 
-//    public Congressman findOneWithSns(Long id) {
-//        return em.createQuery("select c, s from Congressman c join Sns s on c.monaCd = s.monaCd where c.id = :id", Congressman.class)
-//                .setParameter("id", id)
-//                .getSingleResult();
-//    }
-
     public List<Congressman> findAll() {
         return em.createQuery("select c from Congressman c", Congressman.class)
                 .getResultList();
@@ -37,6 +31,14 @@ public class CongressmanRepository {
         return em.createQuery("select c from Congressman c where c.name = :name")
                 .setParameter("name", name)
                 .getResultList();
+    }
+
+    public void updateSnsId(Long id, String monaCd) {
+        em.createNativeQuery("update congressman set sns_id = :id where mona_cd = :monaCd")
+                .setParameter("id", id)
+                .setParameter("monaCd", monaCd)
+                .executeUpdate();
+        em.clear();
     }
 
 }

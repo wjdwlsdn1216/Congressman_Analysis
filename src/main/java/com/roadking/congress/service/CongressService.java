@@ -38,5 +38,9 @@ public class CongressService {
         return congressmanRepository.findAll();
     }
 
+    @Transactional
+    public void updateSnsId(Long id, String monaCd) {
+        congressmanRepository.updateSnsId(id,monaCd);
+    }
 
 }

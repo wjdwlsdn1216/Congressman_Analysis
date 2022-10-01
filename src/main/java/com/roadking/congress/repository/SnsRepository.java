@@ -14,4 +14,9 @@ public class SnsRepository {
     public void save(Sns sns) {
         em.persist(sns);
     }
+
+    public Sns findByMonaCd(String monaCd) {
+        return em.createQuery("select s from Sns s where s.monaCd = :monaCd", Sns.class)
+                .setParameter("monaCd", monaCd).getSingleResult();
+    }
 }
