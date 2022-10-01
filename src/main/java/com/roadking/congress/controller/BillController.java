@@ -1,0 +1,9 @@
+package com.roadking.congress.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+
+@Controller
+@RequiredArgsConstructor
+public class BillController {
+}

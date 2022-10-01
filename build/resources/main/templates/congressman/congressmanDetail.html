@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <td th:text="${congressman.id}"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td th:text="${congressman.name}"></td>
+            </tr>
+            </tr>
+            <tr>
+                <th>한자명</th>
+                <td th:text="${congressman.hjName}"></td>
+            </tr>
+            <tr>
+                <th>영문명칭</th>
+                <td th:text="${congressman.enName}"></td>
+            </tr>
+            <tr>
+                <th>음양력</th>
+                <td th:text="${congressman.bthGbnNm}"></td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td th:text="${congressman.bthDate}"></td>
+            </tr>
+            <tr>
+                <th>직책명</th>
+                <td th:text="${congressman.jobResNm}"></td>
+            </tr>
+            <tr>
+                <th>정당명</th>
+                <td th:text="${congressman.polyNm}"></td>
+            </tr>
+            <tr>
+                <th>선거구</th>
+                <td th:text="${congressman.origNm}"></td>
+            </tr>
+            <tr>
+                <th>선거구구분</th>
+                <td th:text="${congressman.electGbnNm}"></td>
+            </tr>
+            <tr>
+                <th>대표위원회</th>
+                <td th:text="${congressman.cmitNm}"></td>
+            </tr>
+            <tr>
+                <th>소속위원회목록</th>
+                <td th:text="${congressman.cmits}"></td>
+            </tr>
+            <tr>
+                <th>재선</th>
+                <td th:text="${congressman.reeleGbnNm}"></td>
+            </tr>
+            <tr>
+                <th>당선</th>
+                <td th:text="${congressman.units}"></td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td th:text="${congressman.sex}"></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td th:text="${congressman.telNo}"></td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td th:text="${congressman.email}"></td>
+            </tr>
+            <tr>
+                <th>홈페이지</th>
+                <td th:text="${congressman.homepage}"></td>
+            </tr>
+            <tr>
+                <th>보좌관</th>
+                <td th:text="${congressman.staff}"></td>
+            </tr>
+            <tr>
+                <th>비서관</th>
+                <td th:text="${congressman.secretary}"></td>
+            </tr>
+            <tr>
+                <th>비서</th>
+                <td th:text="${congressman.secretary2}"></td>
+            </tr>
+            <tr>
+                <th>국회의원코드</th>
+                <td th:text="${congressman.monaCd}"></td>
+            </tr>
+            <tr>
+                <th>약력</th>
+                <td th:utext="${congressman.memTitle}"></td>
+            </tr>
+            <tr>
+                <th>사무실호실</th>
+                <td th:text="${congressman.assemAddr}"></td>
+            </tr>
+<!--            <tr>-->
+<!--                <th>sns</th>-->
+<!--                <td><p> facebook : <span th:text="${congressman.sns.facebookUrl}"></span></p>-->
+<!--                    <p> facebook : <span th:text="${congressman.sns.utubeUrl}"></span></p>-->
+<!--                    <p> facebook : <span th:text="${congressman.sns.twitterUrl}"></span></p>-->
+<!--                    <p> facebook : <span th:text="${congressman.sns.blogUrl}"></span></p>-->
+<!--                </td>-->
+<!--            </tr>-->
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
