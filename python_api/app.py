@@ -34,8 +34,7 @@ def prediction(data):
 
     outputs = model(inputs)
     _, preds = torch.max(outputs, 1)
-    print(_)
-    print(preds)
+
     congress_dict = load_json('/works/Congressman_Analysis/python_api/data/save_name.json')
 
     class_name = str(congress_dict[str(preds.item())])
