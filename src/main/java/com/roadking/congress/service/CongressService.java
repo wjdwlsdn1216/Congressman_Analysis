@@ -24,14 +24,8 @@ public class CongressService {
         congressmanRepository.save(congressman);
     }
 
-
-
     public Congressman findOne(Long id) {
         return congressmanRepository.findOne(id);
-    }
-
-    public CongressmanFlatDto findWithSns(Long id) {
-        return congressmanQueryRepository.findCongressmanWithSns(id);
     }
 
     public List<Congressman> findAll() {
@@ -42,5 +36,6 @@ public class CongressService {
     public void updateSnsId(Long id, String monaCd) {
         congressmanRepository.updateSnsId(id,monaCd);
     }
+
 
 }

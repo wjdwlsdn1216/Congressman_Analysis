@@ -4,6 +4,7 @@ import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.domain.Sns;
 import com.roadking.congress.repository.SnsRepository;
 import com.roadking.congress.service.CongressService;
+import com.roadking.congress.service.FileService;
 import com.roadking.congress.service.SnsService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
@@ -11,9 +12,13 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.plaf.multi.MultiFileChooserUI;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -24,6 +29,7 @@ public class CongressController {
 
     private final CongressService congressService;
     private final SnsService snsService;
+    private final FileService fileService;
 
     //출처: 국회의원 인적사항 (국회 OpenApi)
     //json 데이터 congressman table에 저장
@@ -82,7 +88,6 @@ public class CongressController {
                 Long snsId = oneSns.getId();
                 congressService.updateSnsId(snsId, monaCd);
 
-
             }
 
         } catch (Exception e) {
@@ -92,7 +97,7 @@ public class CongressController {
     }
 
     //의원 상세보기
-    @GetMapping("/congressman/detail")
+    @GetMapping("/congressman/detail") //mona_cd 로 의원 찾게 바꿔야함
     public String detail(@RequestParam Long congressmanId, Model model) {
         Congressman congressman = congressService.findOne(congressmanId);
 
@@ -104,11 +109,24 @@ public class CongressController {
     }
 
     //의원 닮은꼴 뷰
-    @GetMapping("/congressman/similar")
-    public String similar(@RequestParam Long congressmanId, Model model) {
-        Congressman congressman = congressService.findOne(congressmanId);
-        model.addAttribute("congressman", congressman);
+//    @GetMapping("/congressman/similar")
+//    public String similar(@RequestParam Long congressmanId, Model model) {
+//        Congressman congressman = congressService.findOne(congressmanId);
+//        model.addAttribute("congressman", congressman);
+//        return "congressman/congressmanSimilar";
+//    }
+
+    @PostMapping("/congressman/similar")
+    public String similar(@RequestParam MultipartFile file, Model model) {
+        fileService.client(file); // 사용자사진을 닮은꼴api에 전송
+//        fileService.server(); // 닮은꼴api 에서 닮은의원이미지를 받음
+        model.addAttribute("");
         return "congressman/congressmanSimilar";
+    }
+
+    @GetMapping("/server/start")
+    public void serverStart() {
+        fileService.server();
     }
 
 
