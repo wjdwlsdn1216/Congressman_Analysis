@@ -19,7 +19,8 @@ public class HttpMultifileService {
 
 
         try {
-            String url = "http://localhost:8080/getURL";
+//            String url = "https://70b6-221-156-19-39.jp.ngrok.io/predict";
+            String url = "http://localhost:8080/test";
             String charset = "UTF-8";
             File binaryFile = uploadFile;
             String boundary = Long.toHexString(System.currentTimeMillis());

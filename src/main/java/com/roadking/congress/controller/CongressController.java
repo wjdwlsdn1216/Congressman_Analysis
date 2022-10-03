@@ -182,10 +182,15 @@ public class CongressController {
 //
 //    }
 
-
+//    //Okhttp
     @PostMapping("/congressman/similar")
     public String similar(@RequestParam MultipartFile multipartFile) throws Exception {
-        okHttpService.client(multipartFile);
+        String result = okHttpService.client(multipartFile);
+        JSONObject jsonObject = new JSONObject(result);
+        String resultPerson = jsonObject.get("class_name").toString();
+        String similarPercent = jsonObject.get("result").toString();
+        System.out.println("resultPerson = " + resultPerson);
+        System.out.println("similarPercent = " + similarPercent);
 
         return "congressman/congressmanSimilar";
     }

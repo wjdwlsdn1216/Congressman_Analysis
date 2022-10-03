@@ -11,8 +11,7 @@ import java.util.UUID;
 @Service
 public class OkHttpService {
 
-
-    public void client(MultipartFile multipartFile) throws IOException {
+    public String client(MultipartFile multipartFile) throws IOException {
         String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/upload/";
         String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
         File file = new File(basePath, uuidFileName);
@@ -21,13 +20,23 @@ public class OkHttpService {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .addHeader("fileName", file.getName())
-                .url("http://localhost:8080/test")
+                .url("https://70b6-221-156-19-39.jp.ngrok.io/predict")
                 .post(RequestBody.create(MediaType.parse("image"), file))
                 .build();
 
         Response response = okHttpClient.newCall(request).execute();
 
-        String msg = response.header("msg");
-        System.out.println(msg);
+
+        String result = response.body().string();
+        System.out.println(result);
+
+        return result;
+
+
+
+
+
+
+
     }
 }
