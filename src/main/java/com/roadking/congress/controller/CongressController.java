@@ -2,26 +2,28 @@ package com.roadking.congress.controller;
 
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.domain.Sns;
-import com.roadking.congress.repository.SnsRepository;
-import com.roadking.congress.service.CongressService;
-import com.roadking.congress.service.FileService;
-import com.roadking.congress.service.SnsService;
+import com.roadking.congress.service.*;
+import com.roadking.congress.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import javax.swing.plaf.multi.MultiFileChooserUI;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,6 +32,9 @@ public class CongressController {
     private final CongressService congressService;
     private final SnsService snsService;
     private final FileService fileService;
+    private final HttpFileService httpFileService;
+    private final HttpMultifileService httpMultifileService;
+    private final OkHttpService okHttpService;
 
     //출처: 국회의원 인적사항 (국회 OpenApi)
     //json 데이터 congressman table에 저장
@@ -87,7 +92,6 @@ public class CongressController {
                 Sns oneSns = snsService.findSnsByMonaCd(monaCd);
                 Long snsId = oneSns.getId();
                 congressService.updateSnsId(snsId, monaCd);
-
             }
 
         } catch (Exception e) {
@@ -116,17 +120,74 @@ public class CongressController {
 //        return "congressman/congressmanSimilar";
 //    }
 
-    @PostMapping("/congressman/similar")
-    public String similar(@RequestParam MultipartFile file, Model model) {
-        fileService.client(file); // 사용자사진을 닮은꼴api에 전송
-//        fileService.server(); // 닮은꼴api 에서 닮은의원이미지를 받음
-        model.addAttribute("");
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile file, Model model) {
+//        fileService.client(file); // 사용자사진을 닮은꼴api에 전송
+////        File similarImg = fileService.server();// 닮은꼴api 에서 닮은의원이미지를 받아서저장
+////        String name = similarImg.getName();
+//
+//
+//        model.addAttribute("");
+//        return "congressman/congressmanSimilar";
+//    }
+
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile file) throws Exception {
+//        httpFileService.httpClient(file);
+//
+//        return "redirect:/test";
+//    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public String test(Model model, HttpServletRequest req, HttpServletResponse res) throws Exception {
+        httpFileService.httpSever(req, res);
         return "congressman/congressmanSimilar";
     }
 
-    @GetMapping("/server/start")
-    public void serverStart() {
-        fileService.server();
+
+    //HttpMultifileService 이용
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile multipartFile) throws Exception {
+//        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/upload/";
+//        String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
+//        File file = new File(basePath, uuidFileName);
+//        multipartFile.transferTo(file);
+//
+//        httpMultifileService.client(file);
+//
+//        return "congressman/congressmanSimilar";
+//    }
+//
+//    @RequestMapping(value = "/getURL", method = RequestMethod.POST)
+//    private void getURL(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//
+//        MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+//        MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
+//
+//        File directory = CommonUtil.getImageDirectory(multipartRequest);
+//
+//        Iterator<String> iterator = multipartRequest.getFileNames();
+//        int successCount = 0;
+//        while (iterator.hasNext()) {
+//            MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
+//            multipartFile.getSize();
+//
+//            String fileName = multipartFile.getOriginalFilename();
+//
+//            File uploadFile = new File(directory, fileName);
+//            multipartFile.transferTo(uploadFile);
+//        }
+//
+//
+//    }
+
+
+    @PostMapping("/congressman/similar")
+    public String similar(@RequestParam MultipartFile multipartFile) throws Exception {
+        okHttpService.client(multipartFile);
+
+        return "congressman/congressmanSimilar";
     }
 
 
