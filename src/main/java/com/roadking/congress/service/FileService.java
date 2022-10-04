@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.UUID;
 
+//소켓 통신
 @Service
 public class FileService {
 

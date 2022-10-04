@@ -27,10 +27,10 @@ public class CongressmanRepository {
                 .getResultList();
     }
 
-    public List<Congressman> findByName(String name) {
-        return em.createQuery("select c from Congressman c where c.name = :name")
+    public Congressman findByName(String name) {
+        return em.createQuery("select c from Congressman c where c.name = :name", Congressman.class)
                 .setParameter("name", name)
-                .getResultList();
+                .getSingleResult();
     }
 
     public void updateSnsId(Long id, String monaCd) {

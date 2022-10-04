@@ -37,5 +37,9 @@ public class CongressService {
         congressmanRepository.updateSnsId(id,monaCd);
     }
 
+    public Congressman findByName(String name) {
+        return congressmanRepository.findByName(name);
+    }
+
 
 }

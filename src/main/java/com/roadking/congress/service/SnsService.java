@@ -13,7 +13,6 @@ public class SnsService {
 
     private final SnsRepository snsRepository;
 
-
     @Transactional
     public void save(Sns sns) {
         snsRepository.save(sns);

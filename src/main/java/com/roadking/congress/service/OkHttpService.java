@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+//OkHttp 라이브러리 사용
 @Service
 public class OkHttpService {
 

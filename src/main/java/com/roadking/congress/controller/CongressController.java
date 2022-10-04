@@ -3,7 +3,6 @@ package com.roadking.congress.controller;
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.domain.Sns;
 import com.roadking.congress.service.*;
-import com.roadking.congress.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,19 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -102,8 +92,11 @@ public class CongressController {
 
     //의원 상세보기
     @GetMapping("/congressman/detail") //mona_cd 로 의원 찾게 바꿔야함
-    public String detail(@RequestParam Long congressmanId, Model model) {
-        Congressman congressman = congressService.findOne(congressmanId);
+    public String detail(@RequestParam String name, Model model) {
+//        Congressman congressman = congressService.findOne(congressmanId);
+
+        //resultPerson 이름으로 국회의원 엔티티 불러오기
+        Congressman congressman = congressService.findByName(name);
 
         //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
         String replaced = congressman.getMemTitle().replace("\r", "<br>");
@@ -138,11 +131,11 @@ public class CongressController {
 //        return "redirect:/test";
 //    }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public String test(Model model, HttpServletRequest req, HttpServletResponse res) throws Exception {
-        httpFileService.httpSever(req, res);
-        return "congressman/congressmanSimilar";
-    }
+//    @RequestMapping(value = "/test", method = RequestMethod.POST)
+//    public String test(Model model, HttpServletRequest req, HttpServletResponse res) throws Exception {
+//        httpFileService.httpSever(req, res);
+//        return "congressman/congressmanSimilar";
+//    }
 
 
     //HttpMultifileService 이용
@@ -184,13 +177,18 @@ public class CongressController {
 
 //    //Okhttp
     @PostMapping("/congressman/similar")
-    public String similar(@RequestParam MultipartFile multipartFile) throws Exception {
+    public String similar(@RequestParam MultipartFile multipartFile, Model model) throws Exception {
         String result = okHttpService.client(multipartFile);
         JSONObject jsonObject = new JSONObject(result);
         String resultPerson = jsonObject.get("class_name").toString();
         String similarPercent = jsonObject.get("result").toString();
-        System.out.println("resultPerson = " + resultPerson);
+        String replacedResultPerson = resultPerson.replace("의원", "");
+
+        System.out.println("resultPerson = " + replacedResultPerson);
         System.out.println("similarPercent = " + similarPercent);
+
+        model.addAttribute("resultPerson", replacedResultPerson);
+        model.addAttribute("similarPercent", similarPercent);
 
         return "congressman/congressmanSimilar";
     }
