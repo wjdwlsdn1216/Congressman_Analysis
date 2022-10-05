@@ -34,6 +34,7 @@ def prediction(data):
 
     outputs = model(inputs)
     _, preds = torch.max(outputs, 1)
+    print(_, preds)
 
     congress_dict = load_json('/works/Congressman_Analysis/python_api/data/save_name.json')
 
@@ -43,12 +44,22 @@ def prediction(data):
 
 @app.route('/predict', methods=['POST'])
 def get():
-    file = request.files['file'].read()
-    print(type(file))
-    file_bytes = np.fromstring(file, np.uint8)
+    # imageData = None
+    # if 'file' in request.files:
+    #     imageData = request.files['file'].read()
+    # elif 'file' in request.form:
+    #     imageData = request.form['file'].read()
+    # else:
+    imageData = request.get_data()
+
+    file_bytes = np.fromstring(imageData, np.uint8)
     image = cv2.imdecode(file_bytes, cv2.IMREAD_UNCHANGED)
+
+    cv2.imwrite('/works/Congressman_Analysis/testtest.jpg', image)
     result, class_name = prediction(image)
-    
+    if result > 10:
+        result = 8.708
+
     return jsonify({'result':round(result*10,2), 'class_name':class_name})
 
 if __name__ == "__main__":
