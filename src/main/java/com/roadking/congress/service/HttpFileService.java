@@ -23,7 +23,7 @@ public class HttpFileService {
         int length = 0;
         FileOutputStream fos = null;
 
-        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/upload/";
+        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/images/upload/";
         String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
         File file = new File(basePath, uuidFileName);
         multipartFile.transferTo(file);
@@ -103,7 +103,7 @@ public class HttpFileService {
 
         is = req.getInputStream();
 
-        String reposiPath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/receive/"+ req.getHeader("fileName");
+        String reposiPath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/images/receive/"+ req.getHeader("fileName");
 
         File file = new File(reposiPath);
 

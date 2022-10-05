@@ -7,7 +7,7 @@
             <p style="font-size: xxx-large">당신의 닮은꼴 의원은</p>
 
             <a th:href="@{detail(name=${resultPerson})}">
-                <img th:src="@{${'/image/profile/'+resultPerson+'.jpeg'}}">
+                <img th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
             </a>
             <p style="font-size: xx-large"><span th:text="${similarPercent}"></span>% 확률로 <b><span th:text="${resultPerson}"></span></b> 의원 입니다!</p>
         </div>

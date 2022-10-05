@@ -15,7 +15,7 @@ public class FileService {
     public void client(MultipartFile multipartFile) {
         System.out.println("client---->");
         try {
-            String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/upload/";
+            String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/images/upload/";
             Socket socket = new Socket("127.0.0.1", 58824);
             if (socket.isConnected()) {
                 System.out.println("isConnected");
@@ -53,7 +53,7 @@ public class FileService {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             String readUTF = dataInputStream.readUTF();
             System.out.println("imgName = " + readUTF);
-            file = new File("/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/receive/"
+            file = new File("/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/images/receive/"
                     + readUTF);
 
             byte[] buff = new byte[4096];
