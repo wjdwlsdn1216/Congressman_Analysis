@@ -61,7 +61,7 @@ public class SnsController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("congressman 데이터 저장완료!");
+        System.out.println("sns 데이터 저장완료!");
     }
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

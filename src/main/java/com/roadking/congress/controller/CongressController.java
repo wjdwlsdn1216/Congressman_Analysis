@@ -1,16 +1,15 @@
 package com.roadking.congress.controller;
 
 import com.roadking.congress.domain.Congressman;
-import com.roadking.congress.service.CongressService;
+import com.roadking.congress.domain.Sns;
+import com.roadking.congress.service.*;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -21,13 +20,17 @@ import java.net.URL;
 public class CongressController {
 
     private final CongressService congressService;
+    private final SnsService snsService;
+    private final FileService fileService;
+    private final HttpFileService httpFileService;
+    private final HttpMultifileService httpMultifileService;
+    private final OkHttpService okHttpService;
 
-    //출처: 역대 국회의원 인적사항 (국회 OpenApi)
+    //출처: 국회의원 인적사항 (국회 OpenApi)
     //json 데이터 congressman table에 저장
     @GetMapping("/api/load/congressman")
     public void apiLoad() throws Exception {
         StringBuilder sb2 = new StringBuilder();
-
 
 
         final String requestUrl = "https://open.assembly.go.kr/portal/openapi/";
@@ -73,39 +76,122 @@ public class CongressController {
                 String assemAddr = jsonObject.get("ASSEM_ADDR").toString();
 
                 Congressman congressman = new Congressman(name, hjName, enName, bthGbnNm, bthDate, jobResNm, polyNm, origNm, electGbnNm, cmitNm, cmits, reeleGbnNm, units, sex, telNo, email, homepage, staff, secretary, secretary2, monaCd, memTitle, assemAddr);
+                congressService.save(congressman);
 
-            congressService.save(congressman);
-        }
+                //update column sns_id in congressman table
+                Sns oneSns = snsService.findSnsByMonaCd(monaCd);
+                Long snsId = oneSns.getId();
+                congressService.updateSnsId(snsId, monaCd);
+            }
 
         } catch (Exception e) {
-                    e.printStackTrace();
+            e.printStackTrace();
         }
         System.out.println("congressman 데이터 저장완료!");
     }
 
     //의원 상세보기
-    @GetMapping("/congressman/detail")
-    public String detail(@RequestParam Long congressmanId, Model model) {
-        Congressman congressman = congressService.findOne(congressmanId);
+    @GetMapping("/congressman/detail") //mona_cd 로 의원 찾게 바꿔야함
+    public String detail(@RequestParam String name, Model model) {
+//        Congressman congressman = congressService.findOne(congressmanId);
+
+        //resultPerson 이름으로 국회의원 엔티티 불러오기
+        Congressman congressman = congressService.findByName(name);
 
         //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
         String replaced = congressman.getMemTitle().replace("\r", "<br>");
         congressman.setMemTitle(replaced);
-        model.addAttribute("congressman",congressman);
+        model.addAttribute("congressman", congressman);
         return "congressman/congressmanDetail";
     }
 
     //의원 닮은꼴 뷰
-    @GetMapping("/congressman/similar")
-    public String similar(@RequestParam Long congressmanId, Model model) {
-        Congressman congressman = congressService.findOne(congressmanId);
-        model.addAttribute("congressman",congressman);
+//    @GetMapping("/congressman/similar")
+//    public String similar(@RequestParam Long congressmanId, Model model) {
+//        Congressman congressman = congressService.findOne(congressmanId);
+//        model.addAttribute("congressman", congressman);
+//        return "congressman/congressmanSimilar";
+//    }
+
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile file, Model model) {
+//        fileService.client(file); // 사용자사진을 닮은꼴api에 전송
+////        File similarImg = fileService.server();// 닮은꼴api 에서 닮은의원이미지를 받아서저장
+////        String name = similarImg.getName();
+//
+//
+//        model.addAttribute("");
+//        return "congressman/congressmanSimilar";
+//    }
+
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile file) throws Exception {
+//        httpFileService.httpClient(file);
+//
+//        return "redirect:/test";
+//    }
+
+//    @RequestMapping(value = "/test", method = RequestMethod.POST)
+//    public String test(Model model, HttpServletRequest req, HttpServletResponse res) throws Exception {
+//        httpFileService.httpSever(req, res);
+//        return "congressman/congressmanSimilar";
+//    }
+
+
+    //HttpMultifileService 이용
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile multipartFile) throws Exception {
+//        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/upload/";
+//        String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
+//        File file = new File(basePath, uuidFileName);
+//        multipartFile.transferTo(file);
+//
+//        httpMultifileService.client(file);
+//
+//        return "congressman/congressmanSimilar";
+//    }
+//
+//    @RequestMapping(value = "/getURL", method = RequestMethod.POST)
+//    private void getURL(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//
+//        MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+//        MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
+//
+//        File directory = CommonUtil.getImageDirectory(multipartRequest);
+//
+//        Iterator<String> iterator = multipartRequest.getFileNames();
+//        int successCount = 0;
+//        while (iterator.hasNext()) {
+//            MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
+//            multipartFile.getSize();
+//
+//            String fileName = multipartFile.getOriginalFilename();
+//
+//            File uploadFile = new File(directory, fileName);
+//            multipartFile.transferTo(uploadFile);
+//        }
+//
+//
+//    }
+
+//    //Okhttp
+    @PostMapping("/congressman/similar")
+    public String similar(@RequestParam MultipartFile multipartFile, Model model) throws Exception {
+        String result = okHttpService.client(multipartFile);
+        JSONObject jsonObject = new JSONObject(result);
+        String resultPerson = jsonObject.get("class_name").toString();
+        String similarPercent = jsonObject.get("result").toString();
+        String replacedResultPerson = resultPerson.replace("의원", "");
+
+        System.out.println("resultPerson = " + replacedResultPerson);
+        System.out.println("similarPercent = " + similarPercent);
+
+        model.addAttribute("resultPerson", replacedResultPerson);
+        model.addAttribute("similarPercent", similarPercent);
+
         return "congressman/congressmanSimilar";
     }
-
-
-
-
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

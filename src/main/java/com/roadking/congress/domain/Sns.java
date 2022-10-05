@@ -14,8 +14,8 @@ public class Sns {
     @Column(name = "sns_id")
     private Long id;
 
-//    @OneToOne(mappedBy = "sns", fetch = FetchType.LAZY)
-//    private Congressman congressman;
+    @OneToOne(mappedBy = "sns", fetch = FetchType.LAZY)
+    private Congressman congressman;
 
     public Sns(String name, String twitterUrl, String facebookUrl, String utubeUrl, String blogUrl, String monaCd) {
         this.name = name;
