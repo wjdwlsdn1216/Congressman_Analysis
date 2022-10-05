@@ -96,7 +96,6 @@ public class Congressman {
     private String memTitle;
     //ASSEM_ADDR	사무실호실
     private String assemAddr;
-    private String profileImg;
 
 
 }

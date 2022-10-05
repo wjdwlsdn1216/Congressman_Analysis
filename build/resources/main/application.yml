@@ -15,8 +15,10 @@ spring:
         format_sql: true
         default_batch_fetch_size: 100 # in (?,?, ... )  in 쿼리로 한번에 땡겨오는 데이터 개수
 
+#server 설정
 server:
-  port: 58824
+  port: 8080
+  #port: 58824 #linux 서버컴 포트
 
 logging:
   level:
