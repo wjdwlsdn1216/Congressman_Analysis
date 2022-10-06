@@ -193,12 +193,7 @@ public class CongressController {
 
         return "congressman/congressmanSimilar";
     }
-
-    //의원 검색
-    @PostMapping("/congressman/search")
-    public void search(String name) {
-        Congressman congressman = congressService.findByName(name);
-    }
+    
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

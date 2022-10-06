@@ -9,12 +9,14 @@
             <span class="close">&times;</span>
             <h2>의원 검색</h2>
         </div>
-        <div class="modal-body">
-            <input id="searchInput" placeholder="의원 이름을 입력 해주세요.">
-        </div>
-        <div class="modal-footer">
-            <button type="button" onclick="">검색</button>
-        </div>
+        <form role="form" action="/congressman/detail" method="get">
+            <div class="modal-body">
+                <input id="searchInput" name="name" placeholder="의원 이름을 입력 해주세요.">
+            </div>
+            <div class="modal-footer">
+                <button type="submit">의원 정보 검색</button>
+            </div>
+        </form>
     </div>
 
 </div>
