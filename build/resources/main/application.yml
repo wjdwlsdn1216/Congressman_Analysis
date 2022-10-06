@@ -22,7 +22,7 @@ spring:
 #server 설정
 server:
   port: 8080
-  #port: 58824 #linux 서버컴 포트
+#  port: 58824 #linux 서버컴 포트
 
 logging:
   level:

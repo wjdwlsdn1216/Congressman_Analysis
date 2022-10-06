@@ -90,14 +90,17 @@
 
     <div class="container">
         <div>
-            <div style="text-align:center">
-                <p style="font-size: large">당신의 닮은꼴 의원은</p>
+            <div style="text-align:center; margin: 10%; box-shadow: 3px 3px 3px 3px #c2c2c2;">
+                <br>
+                <p style="font-size: large; font-weight: bold;">당신의 닮은꼴 의원은</p>
 
                 <a th:href="@{detail(name=${resultPerson})}">
-                    <img th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
+                    <img th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}" style="margin: auto; width: 80%; display: block;">
                 </a>
+                <br>
                 <p style="font-size: medium"><span th:text="${similarPercent}"></span>% 확률로 <b><span
                         th:text="${resultPerson}"></span></b> 의원 입니다!</p>
+                <br>
             </div>
         </div>
     </div> <!-- /container -->

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div id="bodyHeader-wrapper" th:fragment="bodyHeader">
-    <header id="header" class="container">
+    <header id="header" class="container" style="text-align: center;">
         <!-- Logo -->
+        <br>
         <div id="logo">
-            <h6><a href="/">Congressman</a></h6>
+            <h2><span href="/">Congressman</span></h2>
         </div>
 
         <!-- currentPage -->
-        <div style="float: right;">
+<!--        <div>-->
 
-            <span th:if="${currentPage == 'similar'}">나와 닮은 의원</span>
-            <span th:if="${currentPage == 'detail'}">의원 정보</span>
-            <span th:if="${currentPage == 'mypage'}">마이페이지</span>
-        </div>
+<!--            <span th:if="${currentPage == 'similar'}">나와 닮은 의원</span>-->
+<!--            <span th:if="${currentPage == 'detail'}">의원 정보</span>-->
+<!--            <span th:if="${currentPage == 'mypage'}">마이페이지</span>-->
+<!--            <span th:if="${currentPage == 'home'}">마이페이지</span>-->
+<!--        </div>-->
 
     </header>
 </div>
