@@ -32,7 +32,6 @@ public class CongressController {
     public void apiLoad() throws Exception {
         StringBuilder sb2 = new StringBuilder();
 
-
         final String requestUrl = "https://open.assembly.go.kr/portal/openapi/";
         String urlKey = "nwvrqwxyaytdsfvhu";
         final String myKey = "43db7dc8640d4d6eb030d770bd5628d7";
@@ -102,6 +101,7 @@ public class CongressController {
         String replaced = congressman.getMemTitle().replace("\r", "<br>");
         congressman.setMemTitle(replaced);
         model.addAttribute("congressman", congressman);
+        model.addAttribute("currentPage","detail");
         return "congressman/congressmanDetail";
     }
 
@@ -189,9 +189,11 @@ public class CongressController {
 
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
+        model.addAttribute("currentPage","similar");
 
         return "congressman/congressmanSimilar";
     }
+    
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

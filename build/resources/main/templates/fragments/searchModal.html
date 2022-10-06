@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- The Modal -->
+<div id="myModal" class="modal" th:fragment="searchModal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>의원 검색</h2>
+        </div>
+        <form role="form" action="/congressman/detail" method="get">
+            <div class="modal-body">
+                <input id="searchInput" name="name" placeholder="의원 이름을 입력 해주세요.">
+            </div>
+            <div class="modal-footer">
+                <button type="submit">의원 정보 검색</button>
+            </div>
+        </form>
+    </div>
+
+</div>

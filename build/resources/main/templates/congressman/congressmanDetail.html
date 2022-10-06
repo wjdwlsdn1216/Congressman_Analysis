@@ -1,7 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<body>
-<div class="container">
+<head th:replace="fragments/header::header"/>
+<body class="is-preload homepage">
+<div id="page-wrapper">
+    <div th:replace="fragments/bodyHeader::bodyHeader"/>
+
     <div>
         <table class="table table-striped">
             <tr>
@@ -111,6 +114,10 @@
             </tr>
         </table>
     </div>
+
+    <div th:replace="fragments/searchModal::searchModal"></div>
+
+    <th:block th:replace="fragments/footer::footer"/>
 </div> <!-- /container -->
 </body>
 </html>
