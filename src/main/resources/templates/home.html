@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/header::header"/>
+<body class="is-preload homepage">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header-wrapper">
+        <header id="header" class="container">
+
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="home.html">Congressman</a></h1>
+                <span>by Roadking</span>
+            </div>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current"><a href="home.html">Welcome</a></li>
+                    <li>
+                        <a href="#">Dropdown</a>
+                        <ul>
+                            <li><a href="#">Lorem ipsum dolor</a></li>
+                            <li><a href="#">Magna phasellus</a></li>
+                            <li>
+                                <a href="#">Phasellus consequat</a>
+                                <ul>
+                                    <li><a href="#">Lorem ipsum dolor</a></li>
+                                    <li><a href="#">Phasellus consequat</a></li>
+                                    <li><a href="#">Magna phasellus</a></li>
+                                    <li><a href="#">Etiam dolore nisl</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Veroeros feugiat</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </header>
+    </div>
+
+    <!-- Banner -->
+    <div id="banner-wrapper">
+        <div id="banner" class="box container">
+            <div class="row">
+                <div class="col-7 col-12-medium">
+                    <h2>닮은꼴 의원 찾기</h2>
+                    <p>나와 닮은 국회의원을 찾아보자!</p>
+                    <img id="preview_image" style="width: 250px; height: 350px; display: none;">
+                </div>
+                <div class="col-5 col-12-medium">
+                    <form action="/congressman/similar" method="post" enctype="multipart/form-data">
+                        <ul>
+                            <li><label for="input_file" class="button alt large icon solid">사진 선택</label>
+                                <input type="file" id="input_file" name="multipartFile" onchange="previewImage();" style="display: none">
+                            </li>
+                            <li>
+                                <button type="submit" class="button large icon solid fa-arrow-circle-right">찾기</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer::footer"/>
+
+</div>
+
+<!-- Scripts -->
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>
+    function previewImage() {
+        // 파일리더 생성
+        var preview = new FileReader();
+        preview.onload = function (e) {
+            // img id 값
+            document.getElementById("preview_image").src = e.target.result;
+        };
+        // input id 값
+        preview.readAsDataURL(document.getElementById("input_file").files[0]);
+        document.getElementById("preview_image").style.display="";
+    };
+</script>
+
+</body>
+</html>

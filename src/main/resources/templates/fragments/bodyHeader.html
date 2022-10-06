@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="bodyHeader-wrapper" th:fragment="bodyHeader">
+    <header id="header" class="container">
+        <!-- Logo -->
+        <div id="logo">
+            <h6><a href="/">Congressman</a></h6>
+        </div>
+
+        <!-- currentPage -->
+        <div style="float: right;">
+
+            <span th:if="${currentPage == 'similar'}">나와 닮은 의원</span>
+            <span th:if="${currentPage == 'detail'}">의원 정보</span>
+        </div>
+
+    </header>
+</div>

@@ -102,6 +102,7 @@ public class CongressController {
         String replaced = congressman.getMemTitle().replace("\r", "<br>");
         congressman.setMemTitle(replaced);
         model.addAttribute("congressman", congressman);
+        model.addAttribute("currentPage","detail");
         return "congressman/congressmanDetail";
     }
 
@@ -189,6 +190,7 @@ public class CongressController {
 
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
+        model.addAttribute("currentPage","similar");
 
         return "congressman/congressmanSimilar";
     }

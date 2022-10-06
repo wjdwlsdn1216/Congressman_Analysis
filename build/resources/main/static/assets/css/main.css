@@ -1931,6 +1931,31 @@ input, select, textarea {
 		position: relative;
 	}
 
+/* bodyHeader */
+	#bodyHeader-wrapper {
+		padding-bottom: 22px;
+	}
+
+	a {
+		text-decoration: none;
+		color: black;
+	}
+
+	.navbar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: bisque;
+		padding: 8px 12px;
+	}
+
+	.navbar__menu {
+		display: flex;
+		list-style: none;
+		padding-left: 0;
+	}
+
+
 /* Logo */
 
 	#logo {
@@ -2133,6 +2158,11 @@ input, select, textarea {
 		#copyright a {
 			color: inherit;
 		}
+
+/* custom-footer-wrapper */
+	#custom-footer-wrapper {
+		padding-top: 88px;
+	}
 
 /* XLarge */
 
