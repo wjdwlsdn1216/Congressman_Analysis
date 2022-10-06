@@ -32,7 +32,6 @@ public class CongressController {
     public void apiLoad() throws Exception {
         StringBuilder sb2 = new StringBuilder();
 
-
         final String requestUrl = "https://open.assembly.go.kr/portal/openapi/";
         String urlKey = "nwvrqwxyaytdsfvhu";
         final String myKey = "43db7dc8640d4d6eb030d770bd5628d7";
@@ -193,6 +192,12 @@ public class CongressController {
         model.addAttribute("currentPage","similar");
 
         return "congressman/congressmanSimilar";
+    }
+
+    //의원 검색
+    @PostMapping("/congressman/search")
+    public void search(String name) {
+        Congressman congressman = congressService.findByName(name);
     }
 
 

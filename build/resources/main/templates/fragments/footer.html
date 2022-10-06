@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div id="custom-footer-wrapper" th:fragment="footer">
-    <footer id="footer" class="container">
-        <nav class="navbar" style="position: fixed; bottom: 0; width: 100%;">
+<th:block th:fragment="footer">
+    <div id="custom-footer-wrapper">
+        <footer id="footer" class="container">
+            <nav class="navbar" style="position: fixed; bottom: 0; width: 100%;">
 
-            <div class="navbar__menu">
-                <a href="">의원 검색</a>
-            </div>
-            <div class="navbar__menu">
-                <a th:if="${currentPage != 'home'}" href="/"><img src="/images/nav/home_house_icon_143764.png" ></a>
-                <a th:if="${currentPage == 'home'}" href="/"><img src="/images/nav/homepage1_114609.png" ></a>
-            </div>
-            <div class="navbar__menu">
-                <a href="">마이페이지</a>
-            </div>
-
-        </nav>
-
-    </footer>
-</div>
+                <div class="navbar__menu">
+                    <!-- Trigger/Open The Modal -->
+                    <a id="myBtn">의원 검색</a>
+                </div>
+                <div class="navbar__menu">
+                    <a th:if="${currentPage != 'home'}" href="/"><img src="/images/nav/home_house_icon_143764.png"></a>
+                    <a th:if="${currentPage == 'home'}" href="/"><img src="/images/nav/homepage1_114609.png"></a>
+                </div>
+                <div class="navbar__menu">
+                    <a href="/mypage">마이페이지</a>
+                </div>
+            </nav>
+        </footer>
+    </div>
+    <script src="/assets/js/modal.js"></script>
+</th:block>

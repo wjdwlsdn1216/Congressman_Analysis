@@ -114,7 +114,10 @@
             </tr>
         </table>
     </div>
-    <div th:replace="fragments/footer::footer"/>
+
+    <div th:replace="fragments/searchModal::searchModal"></div>
+
+    <th:block th:replace="fragments/footer::footer"/>
 </div> <!-- /container -->
 </body>
 </html>
