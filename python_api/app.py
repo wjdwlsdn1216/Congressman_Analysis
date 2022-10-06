@@ -55,7 +55,7 @@ def get():
     file_bytes = np.fromstring(imageData, np.uint8)
     image = cv2.imdecode(file_bytes, cv2.IMREAD_UNCHANGED)
 
-    cv2.imwrite('/works/Congressman_Analysis/testtest.jpg', image)
+    # cv2.imwrite('/works/Congressman_Analysis/testtest.jpg', image)
     result, class_name = prediction(image)
     if result > 10:
         result = 8.708
