@@ -7,11 +7,13 @@ public class SearchDto {
 
     private Long id;
     private String name;
-    private String bthGbnNm;
+    private String bthDate;
+    private String polyNm;
 
-    public SearchDto(Long id, String name, String bthGbnNm) {
+    public SearchDto(Long id, String name, String bthDate, String polyNm) {
         this.id = id;
         this.name = name;
-        this.bthGbnNm = bthGbnNm;
+        this.bthDate = bthDate;
+        this.polyNm = polyNm;
     }
 }

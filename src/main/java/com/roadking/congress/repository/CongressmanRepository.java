@@ -1,5 +1,6 @@
 package com.roadking.congress.repository;
 
+import com.roadking.congress.controller.SearchDto;
 import com.roadking.congress.domain.Congressman;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,14 @@ public class CongressmanRepository {
         return em.createQuery("select c from Congressman c where c.name = :name", Congressman.class)
                 .setParameter("name", name)
                 .getSingleResult();
+    }
+
+    public List<SearchDto> findByNameLike(String name) {
+        return em.createQuery(
+                "select new com.roadking.congress.controller.SearchDto(c.id, c.name, c.bthDate, c.polyNm)" +
+                        " from Congressman c where c.name like :name", SearchDto.class)
+                .setParameter("name", name+"%")
+                .getResultList();
     }
 
     public void updateSnsId(Long id, String monaCd) {

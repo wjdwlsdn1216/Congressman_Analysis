@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -101,7 +103,7 @@ public class CongressController {
         String replaced = congressman.getMemTitle().replace("\r", "<br>");
         congressman.setMemTitle(replaced);
         model.addAttribute("congressman", congressman);
-        model.addAttribute("currentPage","detail");
+        model.addAttribute("currentPage", "detail");
         return "congressman/congressmanDetail";
     }
 
@@ -175,7 +177,7 @@ public class CongressController {
 //
 //    }
 
-//    //Okhttp
+    //    //Okhttp
     @PostMapping("/congressman/similar")
     public String similar(@RequestParam MultipartFile multipartFile, Model model) throws Exception {
         String result = okHttpService.client(multipartFile);
@@ -189,11 +191,21 @@ public class CongressController {
 
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
-        model.addAttribute("currentPage","similar");
+        model.addAttribute("currentPage", "similar");
 
         return "congressman/congressmanSimilar";
     }
-    
+
+    //의원 검색
+    @RequestMapping("/search")
+    @ResponseBody
+    public List<SearchDto> search(SearchDto searchDto) {
+        if (searchDto.getName() != null && searchDto.getName() != "") {
+            List<SearchDto> conList = congressService.findByNameLike(searchDto.getName());
+            return conList;
+        }
+        return null;
+    }
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

@@ -1,5 +1,6 @@
 package com.roadking.congress.service;
 
+import com.roadking.congress.controller.SearchDto;
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.repository.CongressmanRepository;
 import com.roadking.congress.repository.congressman.dto.CongressmanFlatDto;
@@ -39,6 +40,10 @@ public class CongressService {
 
     public Congressman findByName(String name) {
         return congressmanRepository.findByName(name);
+    }
+
+    public List<SearchDto> findByNameLike(String name) {
+        return congressmanRepository.findByNameLike(name);
     }
 
 
