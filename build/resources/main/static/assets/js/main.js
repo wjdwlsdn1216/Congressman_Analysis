@@ -34,10 +34,7 @@ function search() {
         // res.polyNm
         $("#resultDiv table tr").remove();
         for (let con of res) {
-            $("#resultDiv table").append("<tr><td>" + con.name + "</td><td>" + con.polyNm + "</td><td>" + con.bthDate + "</td></tr>");
+            $("#resultDiv table").append("<tr><td>" + "<a href='/congressman/detail?id="+ con.id + "'>" + con.name + "</a>" + "</td><td>" + con.polyNm + "</td><td>" + con.bthDate + "</td></tr>");
         }
-
-
-        // $("#resultDiv p").replaceWith("<p>" + res.name + "(" + res.polyNm + ", "+ res.bthDate + ")" + "</p>");
     });
 }

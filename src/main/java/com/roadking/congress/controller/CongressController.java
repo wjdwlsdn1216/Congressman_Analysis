@@ -93,18 +93,25 @@ public class CongressController {
 
     //의원 상세보기
     @GetMapping("/congressman/detail") //mona_cd 로 의원 찾게 바꿔야함
-    public String detail(@RequestParam String name, Model model) {
-//        Congressman congressman = congressService.findOne(congressmanId);
+    public String detail(@RequestParam(required = false) String name, @RequestParam(required = false) Long id, Model model) {
+        Congressman congressman;
+        if (id != null) {
+            congressman = congressService.findOne(id);
 
-        //resultPerson 이름으로 국회의원 엔티티 불러오기
-        Congressman congressman = congressService.findByName(name);
-
-        //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
-        String replaced = congressman.getMemTitle().replace("\r", "<br>");
-        congressman.setMemTitle(replaced);
+            //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
+            String replaced = congressman.getMemTitle().replace("\r", "<br>");
+            congressman.setMemTitle(replaced);
+        } else {
+            //resultPerson 이름으로 국회의원 엔티티 불러오기
+            congressman = congressService.findByName(name);
+            //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
+            String replaced = congressman.getMemTitle().replace("\r", "<br>");
+            congressman.setMemTitle(replaced);
+        }
         model.addAttribute("congressman", congressman);
         model.addAttribute("currentPage", "detail");
         return "congressman/congressmanDetail";
+
     }
 
     //의원 닮은꼴 뷰
