@@ -1,10 +1,8 @@
 package com.roadking.congress.controller;
 
-import com.roadking.congress.service.FileService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -14,6 +12,13 @@ public class HomeController {
         model.addAttribute("currentPage","home");
         return "home";
     }
+
+
+
+
+
+
+
 
 
 }

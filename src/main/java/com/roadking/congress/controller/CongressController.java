@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -91,18 +93,25 @@ public class CongressController {
 
     //의원 상세보기
     @GetMapping("/congressman/detail") //mona_cd 로 의원 찾게 바꿔야함
-    public String detail(@RequestParam String name, Model model) {
-//        Congressman congressman = congressService.findOne(congressmanId);
+    public String detail(@RequestParam(required = false) String name, @RequestParam(required = false) Long id, Model model) {
+        Congressman congressman;
+        if (id != null) {
+            congressman = congressService.findOne(id);
 
-        //resultPerson 이름으로 국회의원 엔티티 불러오기
-        Congressman congressman = congressService.findByName(name);
-
-        //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
-        String replaced = congressman.getMemTitle().replace("\r", "<br>");
-        congressman.setMemTitle(replaced);
+            //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
+            String replaced = congressman.getMemTitle().replace("\r", "<br>");
+            congressman.setMemTitle(replaced);
+        } else {
+            //resultPerson 이름으로 국회의원 엔티티 불러오기
+            congressman = congressService.findByName(name);
+            //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
+            String replaced = congressman.getMemTitle().replace("\r", "<br>");
+            congressman.setMemTitle(replaced);
+        }
         model.addAttribute("congressman", congressman);
-        model.addAttribute("currentPage","detail");
+        model.addAttribute("currentPage", "detail");
         return "congressman/congressmanDetail";
+
     }
 
     //의원 닮은꼴 뷰
@@ -175,7 +184,7 @@ public class CongressController {
 //
 //    }
 
-//    //Okhttp
+    //    //Okhttp
     @PostMapping("/congressman/similar")
     public String similar(@RequestParam MultipartFile multipartFile, Model model) throws Exception {
         String result = okHttpService.client(multipartFile);
@@ -189,11 +198,21 @@ public class CongressController {
 
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
-        model.addAttribute("currentPage","similar");
+        model.addAttribute("currentPage", "similar");
 
         return "congressman/congressmanSimilar";
     }
-    
+
+    //의원 검색
+    @RequestMapping("/search")
+    @ResponseBody
+    public List<SearchDto> search(SearchDto searchDto) {
+        if (searchDto.getName() != null && searchDto.getName() != "") {
+            List<SearchDto> conList = congressService.findByNameLike(searchDto.getName());
+            return conList;
+        }
+        return null;
+    }
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

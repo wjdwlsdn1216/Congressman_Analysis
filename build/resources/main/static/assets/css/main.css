@@ -1,32 +1,78 @@
-@import url("https://fonts.googleapis.com/css?family=Oleo+Script:400|Open+Sans:300,300italic,600,600italic,800");
 
 
 
-	body {
-		margin: unset;
-	}
-	/* bodyHeader */
+body {
+	margin: unset;
+}
 
-	#bodyHeader-wrapper {
-		padding-bottom: 22px;
-	}
 
-	a {
-		text-decoration: none;
-		color: black;
-	}
+/* bodyHeader */
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	text-align: center;
+}
 
-	.navbar {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: bisque;
-	}
+#current-page {
+	background-color: #506fee;
+	color: #fefefe;;
+	padding: 8px 0 8px 0;
+	font-size: 16px;
+}
 
-	.navbar__menu {
-		display: flex;
-	}
 
+
+/* footer */
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #506fee;
+}
+
+.navbar__menu {
+	display: flex;
+	color: #fefefe;
+}
+
+.left {
+	margin-left: 5%;
+}
+
+.right {
+	margin-right: 5%;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+
+/* image */
+#default_image {
+	margin: auto;
+	width: 70%;
+}
+
+#result-image {
+	margin: auto;
+	width: 80%;
+	display: block;
+}
+
+/* wrapper */
+#content-wrapper {
+	margin-top: 15%;
+}
+
+#container {
+	text-align: center;
+	margin: 10%;
+	box-shadow: 3px 3px 3px 3px #c2c2c2;
+}
 
 
 
