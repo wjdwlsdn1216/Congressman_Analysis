@@ -9,5 +9,8 @@ function previewImage() {
 	};
 	// input id 값
 	preview.readAsDataURL(document.getElementById("input_file").files[0]);
+	//default_image 이미지 안보이게 하고 preview_image 보이게함
+	document.getElementById("default_image").style.display="none";
 	document.getElementById("preview_image").style.display="";
+
 };

@@ -6,6 +6,10 @@ spring:
     password: roadking123
     driver-class-name: org.postgresql.Driver
 
+  devtools:
+    livereload:
+      enabled: true
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -14,6 +18,7 @@ spring:
         #        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100 # in (?,?, ... )  in 쿼리로 한번에 땡겨오는 데이터 개수
+
   servlet:
     multipart:
       max-file-size: 50MB
@@ -21,8 +26,8 @@ spring:
 
 #server 설정
 server:
-  port: 8080
-#  port: 58824 #linux 서버컴 포트
+#  port: 8080
+  port: 58824 #linux 서버컴 포트
 
 logging:
   level:
