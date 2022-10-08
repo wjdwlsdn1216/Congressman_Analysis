@@ -39,6 +39,8 @@ public class CongressmanRepository {
                 "select new com.roadking.congress.controller.SearchDto(c.id, c.name, c.bthDate, c.polyNm)" +
                         " from Congressman c where c.name like :name", SearchDto.class)
                 .setParameter("name", name+"%")
+                .setFirstResult(0)
+                .setMaxResults(5)
                 .getResultList();
     }
 
