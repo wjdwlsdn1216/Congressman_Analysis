@@ -14,7 +14,7 @@
                 <div>
                     <h2>닮은꼴 의원 찾기</h2>
                     <p>나와 닮은 국회의원을 찾아보자!</p>
-                    <div id="load">
+                    <div id="loading">
                         <img src="/images/loading.gif" alt="loading">
                     </div>
                     <img id="default_image" src="/images/default1.png">
@@ -24,7 +24,7 @@
 
             <div style="text-align: center;">
                 <br>
-                <form action="/congressman/similar" method="post" enctype="multipart/form-data">
+                <form action="/congressman/similar" method="post" enctype="multipart/form-data" id="next">
                     <label for="input_file" class="btn btn-secondary">사진 선택</label>
 
                     <input type="file" id="input_file" name="multipartFile" onchange="previewImage();"

@@ -41,6 +41,18 @@ function search() {
 
 //로딩
 
-$(window).load(function() {
-    $('#load').hide();
+$(document).ready(function () {
+
+    $('#loading').hide();
+
+
+
+    $('#next').submit(function () {
+
+        $('#loading').show();
+
+        return true;
+
+    });
+
 });

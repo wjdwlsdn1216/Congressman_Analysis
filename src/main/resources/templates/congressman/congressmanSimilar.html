@@ -11,9 +11,6 @@
             <div id="container">
                 <br>
                 <p style="font-size: large; font-weight: bold;">당신의 닮은꼴 의원은</p>
-                <div id="load">
-                    <img src="/images/loading.gif" alt="loading">
-                </div>
                 <a th:href="@{detail(name=${resultPerson})}">
                     <img id="result-image" th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
                 </a>
