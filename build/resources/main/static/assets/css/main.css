@@ -64,7 +64,10 @@ footer {
 
 
 
-
+#character_image {
+    margin: auto;
+    width: 50%;
+}
 
 /* image */
 #default_image {
