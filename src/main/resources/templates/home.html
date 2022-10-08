@@ -13,25 +13,25 @@
                 <div>
                     <h2>닮은꼴 의원 찾기</h2>
                     <p>나와 닮은 국회의원을 찾아보자!</p>
+                    <div id="load">
+                        <img src="/images/loading.gif" alt="loading">
+                    </div>
                     <img id="default_image" src="/images/default1.png">
                     <img id="preview_image" style="margin: auto; display: none; width: 80%;">
                 </div>
             </div>
 
             <div style="text-align: center;">
-                <div>
-                    <br>
-                    <form action="/congressman/similar" method="post" enctype="multipart/form-data">
-                        <label for="input_file" class="btn btn-secondary">사진 선택</label>
+                <br>
+                <form action="/congressman/similar" method="post" enctype="multipart/form-data">
+                    <label for="input_file" class="btn btn-secondary">사진 선택</label>
 
-                        <input type="file" id="input_file" name="multipartFile" onchange="previewImage();"
-                               style="display: none">
-                        <button type="submit" class="btn btn-primary">찾기</button>
-                    </form>
-                    <br>
-                </div>
+                    <input type="file" id="input_file" name="multipartFile" onchange="previewImage();"
+                            style="display: none">
+                    <button type="submit" class="btn btn-primary">찾기</button>
+                </form>
+                <br>
             </div>
-            
         </div>
     </div>
 

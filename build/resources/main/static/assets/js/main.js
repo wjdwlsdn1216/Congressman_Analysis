@@ -38,3 +38,9 @@ function search() {
         }
     });
 }
+
+//로딩
+
+$(window).load(function() {
+    $('#load').hide();
+});
