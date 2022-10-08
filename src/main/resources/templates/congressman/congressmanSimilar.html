@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header::header"/>
-<body class="is-preload homepage">
+<body>
 <div id="page-wrapper">
 <!--    bodyHeader 들어갈 자리-->
     <div th:replace="fragments/bodyHeader::bodyHeader"/>
@@ -19,8 +19,9 @@
                 <p style="font-size: medium"><span th:text="${similarPercent}"></span>% 확률로 <b><span
                         th:text="${resultPerson}"></span></b> 의원 입니다!</p>
                 <div>
-                    <a th:href="@{detail(name=${resultPerson})}">의원 상세정보 >></a>
+                    <a class="detail-btn" th:href="@{detail(name=${resultPerson})}">의원 상세 정보</a>
                 </div>
+                <br>
             </div>
         </div>
     </div>
