@@ -6,6 +6,7 @@ import com.roadking.congress.service.*;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -114,6 +115,11 @@ public class CongressController {
 
     }
 
+    @ExceptionHandler
+    public String handleEmptyResultDataAccessException(EmptyResultDataAccessException exception) {
+        return "home";
+    }
+
     //의원 닮은꼴 뷰
 //    @GetMapping("/congressman/similar")
 //    public String similar(@RequestParam Long congressmanId, Model model) {
@@ -213,6 +219,7 @@ public class CongressController {
         }
         return null;
     }
+
 
 
     private static StringBuilder getOpenApiData(String requestUrl, String urlKey, String myKey, String type, int pindex, int pSize) throws Exception {

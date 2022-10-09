@@ -2,32 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header::header"/>
 <body>
-<div id="page-wrapper">
 <!--    bodyHeader 들어갈 자리-->
-    <div th:replace="fragments/bodyHeader::bodyHeader"/>
+<div th:replace="fragments/bodyHeader::bodyHeader"/>
 
-    <div id="content-wrapper">
-        <div>
-            <div id="container">
-                <br>
-                <p style="font-size: large; font-weight: bold;">당신의 닮은꼴 의원은</p>
-                <a th:href="@{detail(name=${resultPerson})}">
-                    <img id="result-image" th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
-                </a>
-                <br>
-                <p style="font-size: medium"><span th:text="${similarPercent}"></span>% 확률로 <b><span
-                        th:text="${resultPerson}"></span></b> 의원 입니다!</p>
-                <div>
-                    <a class="detail-btn" th:href="@{detail(name=${resultPerson})}">의원 상세 정보</a>
+<div id="content-wrapper">
+    <div>
+        <div id="container">
+            <br>
+            <p style="font-size: large; font-weight: bold;">당신의 닮은꼴 의원은</p>
+            <a th:href="@{detail(name=${resultPerson})}">
+                <img id="result-image" th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
+            </a>
+            <br>
+            <p style="font-size: medium"><span th:text="${similarPercent}"></span>% 확률로 <span
+                    th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
+
+            <div>
+                <!--                    <a class="detail-btn" th:href="@{detail(name=${resultPerson})}">의원 상세 정보</a>-->
+
+                <!--                    ----------------------------------------------------------->
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <defs>
+                        <symbol id="arrow" viewBox="0 0 100 100">
+                            <path d="M12.5 45.83h64.58v8.33H12.5z"/>
+                            <path d="M59.17 77.92l-5.84-5.84L75.43 50l-22.1-22.08 5.84-5.84L87.07 50z"/>
+                        </symbol>
+                    </defs>
+                </svg>
+                <div class="content">
+                    <a th:href="@{detail(name=${resultPerson})}" class="detail-btn">의원 상세 정보<span><svg><use
+                            xlink:href="#arrow" href="#arrow"></use></svg></span></a>
                 </div>
-                <br>
             </div>
+            <br>
         </div>
     </div>
-
-    <!--    footer 들어갈 자리-->
-    <th:block th:replace="fragments/footer::footer"/>
 </div>
+
+<!--    footer 들어갈 자리-->
+<th:block th:replace="fragments/footer::footer"/>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

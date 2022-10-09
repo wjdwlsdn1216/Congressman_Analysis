@@ -14,7 +14,7 @@ function previewImage() {
 
 };
 
-//의원검색
+//의원검색 - 입력할 때마다 실행하여 입력된값으로 시작되는 이름을 찾아서 뿌려줌
 function search() {
 
     var data = $("#input-name").val();
@@ -39,8 +39,27 @@ function search() {
     });
 }
 
-//로딩
+//의원검색 - 검색버튼 클릭시
+function goDetail() {
+    var data = $("#input-name").val();
 
+    $("#modal-foot a").attr("href", "/congressman/detail?name="+data);
+}
+
+//사진선택안하고 찾기 눌렀을때 예외처리
+$(function() {
+    $("#file_submit").click(function() {
+        var data = $("#input_file").val();
+        if (!data) {
+            alert("사진을 선택해주세요!");
+            return false;
+        }
+    })
+})
+
+
+
+//로딩
 $(document).ready(function () {
 
     $('#loading').hide();
