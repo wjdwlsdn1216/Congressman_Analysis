@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Droid+Serif");
 
-.test-button {
+/* detail-btn */
+.detail-btn {
     position: relative;
     display: inline-flex;
     text-decoration: none;
@@ -12,7 +12,7 @@
     align-items: center;
     box-shadow: 0px 3px 4px -4px rgba(0, 0, 0, 0.75);
 }
-.test-button::before {
+.detail-btn::before {
     content: "";
     position: absolute;
     left: 0;
@@ -25,7 +25,7 @@
     z-index: -1;
     transition: transform 750ms;
 }
-.test-button span {
+.detail-btn span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,17 +34,17 @@
     overflow: hidden;
     background-color: #4A90E2;
 }
-.test-button svg {
+.detail-btn svg {
     max-width: 20px;
     width: 100%;
     height: auto;
     max-height: 18px;
     fill: white;
 }
-.test-button:hover::before {
+.detail-btn:hover::before {
     transform: scaleX(1);
 }
-.test-button:hover svg {
+.detail-btn:hover svg {
     animation: moveArrow 750ms;
 }
 
