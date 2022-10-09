@@ -1,16 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header::header"/>
-<body class="is-preload homepage">
+<body>
 <div id="page-wrapper">
     <div th:replace="fragments/bodyHeader::bodyHeader"/>
-
     <div id="container">
         <table id="table">
-            <tr>
-                <th>#</th>
-                <td th:text="${congressman.id}"></td>
-            </tr>
             <tr>
                 <th>이름</th>
                 <td th:text="${congressman.name}"></td>
@@ -106,10 +101,10 @@
             </tr>
             <tr>
                 <th>sns</th>
-                <td><p> blog : <span th:text="${congressman.sns.blogUrl}"></span></p>
-                    <p> utube : <span th:text="${congressman.sns.utubeUrl}"></span></p>
-                    <p> twitter : <span th:text="${congressman.sns.twitterUrl}"></span></p>
-                    <p> facebook : <span th:text="${congressman.sns.facebookUrl}"></span></p>
+                <td><a th:if="${congressman.sns.blogUrl != 'null'}" th:href="@{${congressman.sns.blogUrl}}"><img src="/images/blog.png"></a>
+                    <a th:if="${congressman.sns.utubeUrl != 'null'}" th:href="@{${congressman.sns.utubeUrl}}"><img src="/images/utube.png"></a>
+                    <a th:if="${congressman.sns.twitterUrl != 'null'}" th:href="@{${congressman.sns.twitterUrl}}"><img src="/images/twitter.png"></a>
+                    <a th:if="${congressman.sns.facebookUrl != 'null'}" th:href="@{${congressman.sns.facebookUrl}}"><img src="/images/facebook.png"></a>
                 </td>
             </tr>
         </table>

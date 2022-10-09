@@ -32,9 +32,27 @@ function search() {
         // res.name
         // res.bthDate
         // res.polyNm
-        $("#resultDiv table tr").remove();
+        $("#resultDiv a").remove();
         for (let con of res) {
-            $("#resultDiv table").append("<tr><td>" + "<a href='/congressman/detail?id="+ con.id + "'>" + con.name + "</a>" + "</td><td>" + con.polyNm + "</td><td>" + con.bthDate + "</td></tr>");
+            $("#resultDiv").append("<a class=\"name-btn\" href='/congressman/detail?id="+ con.id + "'>" + con.name + "</a>");
         }
     });
 }
+
+//로딩
+
+$(document).ready(function () {
+
+    $('#loading').hide();
+
+
+
+    $('#next').submit(function () {
+
+        $('#loading').show();
+
+        return true;
+
+    });
+
+});
