@@ -10,17 +10,20 @@
                     <h1 class="modal-title fs-5" id="searchModalLabel">의원 검색</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <input type="text" id="input-name" onkeyup="search()">
-                    <div id="resultDiv">
-                        <table>
-                        </table>
+                <form>
+                    <div class="modal-body">
+
+                        <input type="text" id="input-name" onkeyup="search()">
+                        <div id="resultDiv">
+                            <table>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div style="text-align: center; margin-bottom: 5%" >
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary" onclick="search()">검색</button>
-                </div>
+                    <div id="modal-foot" style="text-align: center; margin-bottom: 5%">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <a class="btn btn-primary" onclick="goDetail()">검색</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
