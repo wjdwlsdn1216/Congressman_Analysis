@@ -19,8 +19,11 @@ public class HomeController {
     public String home(Model model) {
         //top5 조회수 의원 조회
         List<Congressman> cons = congressService.findOrderbyView();
+        //결과많이 나온 의원수 top5 조회
+        List<Congressman> scons = congressService.findOrderbySimilarView();
 
         model.addAttribute("cons", cons);
+        model.addAttribute("scons", scons);
         model.addAttribute("currentPage","home");
         return "home";
     }
