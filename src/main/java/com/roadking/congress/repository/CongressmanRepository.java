@@ -63,4 +63,11 @@ public class CongressmanRepository {
                 .setMaxResults(5)
                 .getResultList();
     }
+
+    public List<Congressman> findOrderbySimilarView() {
+        return em.createQuery("select c from Congressman c order by c.similarView desc", Congressman.class)
+                .setFirstResult(0)
+                .setMaxResults(5)
+                .getResultList();
+    }
 }

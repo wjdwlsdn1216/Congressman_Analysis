@@ -95,6 +95,8 @@ public class Congressman {
     private String assemAddr;
     //조회수
     private int view;
+    //닮은꼴 결과수
+    private int similarView;
 }
 
 

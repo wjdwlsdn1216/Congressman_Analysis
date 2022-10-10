@@ -37,11 +37,5 @@ public class OkHttpService {
 
         return result;
 
-
-
-
-
-
-
     }
 }

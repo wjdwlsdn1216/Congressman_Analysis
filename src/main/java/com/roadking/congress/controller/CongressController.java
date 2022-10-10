@@ -203,6 +203,14 @@ public class CongressController {
         System.out.println("resultPerson = " + replacedResultPerson);
         System.out.println("similarPercent = " + similarPercent);
 
+        Congressman congressman = congressService.findByName(replacedResultPerson);
+        //닮은꼴 의원 나온수 증가
+        congressService.updateSimilarView(congressman);
+
+        //결과많이 나온 의원수 top5 조회
+        List<Congressman> cons = congressService.findOrderbySimilarView();
+
+        model.addAttribute("cons", cons);
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
         model.addAttribute("currentPage", "similar");

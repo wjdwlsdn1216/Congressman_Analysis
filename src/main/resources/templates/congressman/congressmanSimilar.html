@@ -36,6 +36,27 @@
             </div>
             <br>
         </div>
+
+        <div class="content-container">
+            <h2>자주 나온 의원 랭킹</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>랭킹</th>
+                    <th>이름</th>
+                    <th>나온수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="con : ${cons}">
+                    <td th:text="${conStat.count}"></td>
+                    <td th:text="${con.name}"></td>
+                    <td th:text="${con.similarView}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
