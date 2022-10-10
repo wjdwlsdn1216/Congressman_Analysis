@@ -102,7 +102,7 @@ footer {
     margin-top: 15%;
 }
 
-#container {
+.content-container {
     text-align: center;
     margin: 10%;
     box-shadow: 3px 3px 3px 3px #c2c2c2;

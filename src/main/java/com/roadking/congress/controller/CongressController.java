@@ -98,17 +98,18 @@ public class CongressController {
         Congressman congressman;
         if (id != null) {
             congressman = congressService.findOne(id);
-
-            //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
-            String replaced = congressman.getMemTitle().replace("\r", "<br>");
-            congressman.setMemTitle(replaced);
         } else {
             //resultPerson 이름으로 국회의원 엔티티 불러오기
             congressman = congressService.findByName(name);
-            //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
-            String replaced = congressman.getMemTitle().replace("\r", "<br>");
-            congressman.setMemTitle(replaced);
         }
+
+        //조회수 1상승
+        congressService.updateView(congressman.getId());
+
+        //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
+        String replaced = congressman.getMemTitle().replace("\r", "<br>");
+        congressman.setMemTitle(replaced);
+
         model.addAttribute("congressman", congressman);
         model.addAttribute("currentPage", "detail");
         return "congressman/congressmanDetail";

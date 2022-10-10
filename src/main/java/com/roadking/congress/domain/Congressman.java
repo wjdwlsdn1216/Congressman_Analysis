@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Congressman {
     //출처: 국회의원 인적사항 (국회 OpenApi)
     //필드명과 OpenApi key 이름이 다른것은 주석에 표시
@@ -45,9 +45,6 @@ public class Congressman {
         this.monaCd = monaCd;
         this.memTitle = memTitle;
         this.assemAddr = assemAddr;
-    }
-
-    public Congressman() {
     }
 
     //HG_NM	이름
@@ -96,8 +93,8 @@ public class Congressman {
     private String memTitle;
     //ASSEM_ADDR	사무실호실
     private String assemAddr;
-
-
+    //조회수
+    private int view;
 }
 
 

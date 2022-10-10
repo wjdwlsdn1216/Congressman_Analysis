@@ -18,7 +18,6 @@ public class CongressmanRepository {
         em.persist(congressman);
     }
 
-
     public Congressman findOne(Long id) {
         return em.find(Congressman.class, id);
     }
@@ -36,9 +35,9 @@ public class CongressmanRepository {
 
     public List<SearchDto> findByNameLike(String name) {
         return em.createQuery(
-                "select new com.roadking.congress.controller.SearchDto(c.id, c.name, c.bthDate, c.polyNm)" +
-                        " from Congressman c where c.name like :name", SearchDto.class)
-                .setParameter("name", name+"%")
+                        "select new com.roadking.congress.controller.SearchDto(c.id, c.name, c.bthDate, c.polyNm)" +
+                                " from Congressman c where c.name like :name", SearchDto.class)
+                .setParameter("name", name + "%")
                 .setFirstResult(0)
                 .setMaxResults(5)
                 .getResultList();
@@ -50,6 +49,12 @@ public class CongressmanRepository {
                 .setParameter("monaCd", monaCd)
                 .executeUpdate();
         em.clear();
+    }
+
+    public void updateView(Long id) {
+        em.createQuery("update Congressman c set c.view = c.view+1 where c.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
 
 }

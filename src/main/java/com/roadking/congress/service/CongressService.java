@@ -46,5 +46,10 @@ public class CongressService {
         return congressmanRepository.findByNameLike(name);
     }
 
+    @Transactional
+    public void updateView(Long id) {
+        congressmanRepository.updateView(id);
+    }
+
 
 }
