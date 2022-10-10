@@ -7,6 +7,7 @@
     src: url("../fonts/CookieRun Regular.otf");
     font-weight: normal;
 }
+
 @font-face {
     font-family: CookieRun;
     src: url("../fonts/CookieRun Black.otf");
@@ -79,7 +80,6 @@ footer {
 }
 
 
-
 #character_image {
     margin: auto;
     width: 40%;
@@ -129,58 +129,43 @@ td {
 /* button */
 /* name-btn */
 .name-btn {
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
-    background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-    background-color:#f9f9f9;
-    border-radius:6px;
-    border:1px solid #dcdcdc;
-    display:inline-block;
-    cursor:pointer;
-    color:#666666;
-    font-family:Arial;
-    font-size:0.85em;
-    font-weight:bold;
-    padding:0.38em 0.44em;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 0.85em;
+    font-weight: bold;
+    padding: 0.38em 0.44em;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
 
     margin: 1%;
 }
+
 .name-btn:hover {
-    background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-    background-color:#e9e9e9;
+    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    background-color: #e9e9e9;
 }
+
 .name-btn:active {
-    position:relative;
-    top:1px;
+    position: relative;
+    top: 1px;
 }
 
-/* detail-btn (구) */
-/*.detail-btn {*/
-/*    box-shadow:inset 0px 1px 0px 0px #ffffff;*/
-/*    background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);*/
-/*    background-color:#f9f9f9;*/
-/*    border-radius:6px;*/
-/*    border:1px solid #dcdcdc;*/
-/*    display:inline-block;*/
-/*    cursor:pointer;*/
-/*    color:#666666;*/
-/*    font-family:Arial;*/
-/*    font-size:15px;*/
-/*    font-weight:bold;*/
-/*    padding:6px 24px;*/
-/*    text-decoration:none;*/
-/*    text-shadow:0px 1px 0px #ffffff;*/
-/*}*/
-/*.detail-btn:hover {*/
-/*    background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);*/
-/*    background-color:#e9e9e9;*/
-/*}*/
-/*.detail-btn:active {*/
-/*    position:relative;*/
-/*    top:1px;*/
-/*}*/
 
+/* similar page 꽃가루 animation */
+canvas {
+    z-index: 10;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transform: scale(1.1);
+}
 
 
 /* loading */

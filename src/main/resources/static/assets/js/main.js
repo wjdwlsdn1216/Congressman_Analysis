@@ -39,11 +39,28 @@ function search() {
     });
 }
 
-//의원검색 - 검색버튼 클릭시
+//의원검색 - 검색버튼 클릭시 에러처리
 function goDetail() {
     var data = $("#input-name").val();
 
-    $("#modal-foot a").attr("href", "/congressman/detail?name="+data);
+    if (data !== "") {
+        $.ajax({
+            url: "/congressman/detail",
+            type: "GET",
+            data: {name: data},
+            success: function () {
+                $("#input-name-form").submit();
+            },
+            error: function (err) {
+                alert("존재하지 않는 의원입니다!");
+            }
+        })
+    } else {
+        alert("이름을 입력하세요!");
+    }
+
+
+
 }
 
 //사진선택안하고 찾기 눌렀을때 예외처리

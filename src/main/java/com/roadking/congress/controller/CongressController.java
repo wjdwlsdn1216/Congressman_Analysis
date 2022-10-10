@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -117,8 +118,8 @@ public class CongressController {
     }
 
     @ExceptionHandler
-    public String handleEmptyResultDataAccessException(EmptyResultDataAccessException exception) {
-        return "home";
+    public void handleEmptyResultDataAccessException(EmptyResultDataAccessException exception, Model model) {
+        model.addAttribute("exception", exception);
     }
 
     //의원 닮은꼴 뷰
@@ -207,10 +208,6 @@ public class CongressController {
         //닮은꼴 의원 나온수 증가
         congressService.updateSimilarView(congressman);
 
-        //결과많이 나온 의원수 top5 조회
-        List<Congressman> cons = congressService.findOrderbySimilarView();
-
-        model.addAttribute("cons", cons);
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
         model.addAttribute("currentPage", "similar");
