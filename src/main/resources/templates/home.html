@@ -7,7 +7,7 @@
     <div th:replace="fragments/bodyHeader::bodyHeader"/>
 
     <div id="content-wrapper">
-        <div id="container">
+        <div class="content-container">
             <img id="character_image" src="/images/character.jpg">
             <div style="text-align: center;">
                 <br>
@@ -31,11 +31,31 @@
                     <label for="input_file" class="btn btn-secondary">사진 선택</label>
 
                     <input type="file" id="input_file" name="multipartFile" onchange="previewImage();"
-                            style="display: none">
+                           style="display: none">
                     <button id="file_submit" type="submit" class="btn btn-primary">찾기</button>
                 </form>
                 <br>
             </div>
+        </div>
+
+        <div class="content-container">
+            <h2>의원 조회 랭킹</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>랭킹</th>
+                    <th>이름</th>
+                    <th>조회수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="con : ${cons}">
+                    <td th:text="${conStat.count}"></td>
+                    <td th:text="${con.name}"></td>
+                    <td th:text="${con.view}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
