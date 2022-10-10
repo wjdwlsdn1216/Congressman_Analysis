@@ -57,4 +57,10 @@ public class CongressmanRepository {
                 .executeUpdate();
     }
 
+    public List<Congressman> findOrderbyView() {
+        return em.createQuery("select c from Congressman c order by c.view desc", Congressman.class)
+                .setFirstResult(0)
+                .setMaxResults(5)
+                .getResultList();
+    }
 }

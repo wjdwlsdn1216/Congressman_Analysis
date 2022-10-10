@@ -51,5 +51,9 @@ public class CongressService {
         congressmanRepository.updateView(id);
     }
 
+    public List<Congressman> findOrderbyView() {
+        return  congressmanRepository.findOrderbyView();
+    }
+
 
 }
