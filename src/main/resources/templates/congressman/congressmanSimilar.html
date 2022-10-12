@@ -24,8 +24,7 @@
                      th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
             </a>
             <br>
-            <p style="font-size: medium"><span th:text="${similarPercent}"></span>% 확률로 <span th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
-
+            <p style="font-size: medium"><span id="percent" th:text="${similarPercent}"></span>% 확률로 <span th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
 
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -60,15 +59,7 @@
 
 <script>
     $(document).ready(function () {
-        //꽃가루 이벤트
-        function reAction() {
-            $("#startButton").trigger("click");
-            setTimeout(function () {
-                $("#stopButton").trigger("click");
-            }, 3000);
-        }
-
-        reAction();
+        splashTickles();
     });
 </script>
 </body>

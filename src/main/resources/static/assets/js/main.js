@@ -74,7 +74,13 @@ $(function() {
     })
 });
 
-
+//꽃가루 이벤트
+function splashTickles() {
+    $("#startButton").trigger("click");
+    setTimeout(function () {
+        $("#stopButton").trigger("click");
+    }, 3000);
+}
 
 
 //로딩
@@ -82,14 +88,11 @@ $(document).ready(function () {
 
     $('#loading').hide();
 
-
-
     $('#next').submit(function () {
-
         $('#loading').show();
-
         return true;
-
     });
 
 });
+
+
