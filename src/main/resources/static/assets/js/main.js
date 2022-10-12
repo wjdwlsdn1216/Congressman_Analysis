@@ -12,6 +12,9 @@ function previewImage() {
     document.getElementById("default_image").style.display = "none";
     document.getElementById("preview_image").style.display = "";
 
+    //버튼 강조 애니메이션
+    document.getElementById("file_submit").className = "btn btn-primary animate__animated animate__heartBeat animate__infinite";
+
 };
 
 //의원검색 - 입력할 때마다 실행하여 입력된값으로 시작되는 이름을 찾아서 뿌려줌
@@ -58,9 +61,6 @@ function goDetail() {
     } else {
         alert("이름을 입력하세요!");
     }
-
-
-
 }
 
 //사진선택안하고 찾기 눌렀을때 예외처리
@@ -72,7 +72,8 @@ $(function() {
             return false;
         }
     })
-})
+});
+
 
 
 
