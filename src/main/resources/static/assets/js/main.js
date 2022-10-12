@@ -85,7 +85,6 @@ function splashTickles() {
 
 //로딩
 $(document).ready(function () {
-
     $('#loading').hide();
 
     $('#next').submit(function () {
@@ -93,6 +92,9 @@ $(document).ready(function () {
         return true;
     });
 
+
 });
+
+
 
 

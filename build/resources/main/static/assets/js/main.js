@@ -11,7 +11,6 @@ function previewImage() {
     //default_image 이미지 안보이게 하고 preview_image 보이게함
     document.getElementById("default_image").style.display = "none";
     document.getElementById("preview_image").style.display = "";
-
 };
 
 //의원검색 - 입력할 때마다 실행하여 입력된값으로 시작되는 이름을 찾아서 뿌려줌
@@ -61,17 +60,9 @@ $(function() {
 
 //로딩
 $(document).ready(function () {
-
     $('#loading').hide();
-
-
-
     $('#next').submit(function () {
-
         $('#loading').show();
-
         return true;
-
     });
-
 });
