@@ -48,8 +48,9 @@ public class CongressService {
 
     //업데이트 쿼리 직접날려서 업데이트
     @Transactional
-    public void updateView(Long id) {
-        congressmanRepository.updateView(id);
+    public void updateView(Congressman congressman) {
+//        congressmanRepository.updateView(id);
+        congressman.viewUp();
     }
 
     public List<Congressman> findOrderbyView() {
@@ -63,7 +64,8 @@ public class CongressService {
     //더티체킹 방식으로 업데이트
     @Transactional
     public void updateSimilarView(Congressman congressman) {
-        congressman.setSimilarView(congressman.getSimilarView()+1);
+//        congressman.setSimilarView(congressman.getSimilarView()+1);
+        congressman.similarViewUp();
     }
 
 }

@@ -105,11 +105,12 @@ public class CongressController {
         }
 
         //조회수 1상승
-        congressService.updateView(congressman.getId());
+//        congressService.updateView(congressman.getId());
+        congressService.updateView(congressman);
 
         //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
-        String replaced = congressman.getMemTitle().replace("\r", "<br>");
-        congressman.setMemTitle(replaced);
+//        congressman.setMemTitle(replaced);
+        congressman.replaceMem();
 
         model.addAttribute("congressman", congressman);
         model.addAttribute("currentPage", "detail");
@@ -122,75 +123,6 @@ public class CongressController {
         model.addAttribute("exception", exception);
     }
 
-    //의원 닮은꼴 뷰
-//    @GetMapping("/congressman/similar")
-//    public String similar(@RequestParam Long congressmanId, Model model) {
-//        Congressman congressman = congressService.findOne(congressmanId);
-//        model.addAttribute("congressman", congressman);
-//        return "congressman/congressmanSimilar";
-//    }
-
-//    @PostMapping("/congressman/similar")
-//    public String similar(@RequestParam MultipartFile file, Model model) {
-//        fileService.client(file); // 사용자사진을 닮은꼴api에 전송
-////        File similarImg = fileService.server();// 닮은꼴api 에서 닮은의원이미지를 받아서저장
-////        String name = similarImg.getName();
-//
-//
-//        model.addAttribute("");
-//        return "congressman/congressmanSimilar";
-//    }
-
-//    @PostMapping("/congressman/similar")
-//    public String similar(@RequestParam MultipartFile file) throws Exception {
-//        httpFileService.httpClient(file);
-//
-//        return "redirect:/test";
-//    }
-
-//    @RequestMapping(value = "/test", method = RequestMethod.POST)
-//    public String test(Model model, HttpServletRequest req, HttpServletResponse res) throws Exception {
-//        httpFileService.httpSever(req, res);
-//        return "congressman/congressmanSimilar";
-//    }
-
-
-    //HttpMultifileService 이용
-//    @PostMapping("/congressman/similar")
-//    public String similar(@RequestParam MultipartFile multipartFile) throws Exception {
-//        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/image/upload/";
-//        String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
-//        File file = new File(basePath, uuidFileName);
-//        multipartFile.transferTo(file);
-//
-//        httpMultifileService.client(file);
-//
-//        return "congressman/congressmanSimilar";
-//    }
-//
-//    @RequestMapping(value = "/getURL", method = RequestMethod.POST)
-//    private void getURL(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
-//
-//        MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-//        MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
-//
-//        File directory = CommonUtil.getImageDirectory(multipartRequest);
-//
-//        Iterator<String> iterator = multipartRequest.getFileNames();
-//        int successCount = 0;
-//        while (iterator.hasNext()) {
-//            MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
-//            multipartFile.getSize();
-//
-//            String fileName = multipartFile.getOriginalFilename();
-//
-//            File uploadFile = new File(directory, fileName);
-//            multipartFile.transferTo(uploadFile);
-//        }
-//
-//
-//    }
 
     //    //Okhttp
     @PostMapping("/congressman/similar")

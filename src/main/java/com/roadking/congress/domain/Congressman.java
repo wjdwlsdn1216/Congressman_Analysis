@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Congressman {
     //출처: 국회의원 인적사항 (국회 OpenApi)
@@ -19,6 +19,20 @@ public class Congressman {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "sns_id")
     private Sns sns;
+
+    //닮은의원 나온수 +1
+    public void similarViewUp() {
+        this.similarView = this.similarView + 1;
+    }
+    //의원 디테일 조회수 +1
+    public void viewUp() {
+        this.view = this.view + 1;
+    }
+
+    //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
+    public void replaceMem() {
+        this.memTitle = this.memTitle.replace("\r", "<br>");
+    }
 
 
     public Congressman(String name, String hjName, String enName, String bthGbnNm, String bthDate, String jobResNm, String polyNm, String origNm, String electGbnNm, String cmitNm, String cmits, String reeleGbnNm, String units, String sex, String telNo, String email, String homepage, String staff, String secretary, String secretary2, String monaCd, String memTitle, String assemAddr) {
