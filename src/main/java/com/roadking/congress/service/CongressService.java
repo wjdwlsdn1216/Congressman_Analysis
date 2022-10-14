@@ -46,7 +46,6 @@ public class CongressService {
         return congressmanRepository.findByNameLike(name);
     }
 
-    //업데이트 쿼리 직접날려서 업데이트
     @Transactional
     public void updateView(Congressman congressman) {
 //        congressmanRepository.updateView(id);
