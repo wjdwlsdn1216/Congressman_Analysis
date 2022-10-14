@@ -51,11 +51,11 @@ public class CongressmanRepository {
         em.clear();
     }
 
-    public void updateView(Long id) {
-        em.createQuery("update Congressman c set c.view = c.view+1 where c.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
-    }
+//    public void updateView(Long id) {
+//        em.createQuery("update Congressman c set c.view = c.view+1 where c.id = :id")
+//                .setParameter("id", id)
+//                .executeUpdate();
+//    }
 
     public List<Congressman> findOrderbyView() {
         return em.createQuery("select c from Congressman c order by c.view desc", Congressman.class)
