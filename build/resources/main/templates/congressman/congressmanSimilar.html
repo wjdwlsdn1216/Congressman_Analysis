@@ -6,21 +6,27 @@
 <div th:replace="fragments/bodyHeader::bodyHeader"/>
 
 <div id="content-wrapper">
+    <!-- 꽃가루 효과  -->
+    <script src="/assets/js/confetti_v2.js"></script>
+
+    <div class="buttonContainer" style="display: none">
+        <button class="canvasBtn" id="stopButton">Stop Confetti</button>
+        <button class="canvasBtn" id="startButton">Drop Confetti</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
     <div>
         <div class="content-container">
             <br>
             <p style="font-size: large; font-weight: bold;">당신의 닮은꼴 의원은</p>
             <a th:href="@{detail(name=${resultPerson})}">
-                <img id="result-image" th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
+                <img class="animate__animated animate__zoomInDown" id="result-image"
+                     th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
             </a>
             <br>
-            <p style="font-size: medium"><span th:text="${similarPercent}"></span>% 확률로 <span
-                    th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
+            <p style="font-size: medium"><span id="percent" th:text="${similarPercent}"></span>% 확률로 <span th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
 
             <div>
-                <!--                    <a class="detail-btn" th:href="@{detail(name=${resultPerson})}">의원 상세 정보</a>-->
-
-                <!--                    ----------------------------------------------------------->
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                     <defs>
                         <symbol id="arrow" viewBox="0 0 100 100">
@@ -37,25 +43,6 @@
             <br>
         </div>
 
-        <div class="content-container">
-            <h2>자주 나온 의원 랭킹</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>랭킹</th>
-                    <th>이름</th>
-                    <th>나온수</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="con : ${cons}">
-                    <td th:text="${conStat.count}"></td>
-                    <td th:text="${con.name}"></td>
-                    <td th:text="${con.similarView}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
 
     </div>
 </div>
@@ -69,5 +56,11 @@
         crossorigin="anonymous"></script>
 
 <script src="/assets/js/main.js"></script>
+
+<script>
+    $(document).ready(function () {
+        splashTickles();
+    });
+</script>
 </body>
 </html>
