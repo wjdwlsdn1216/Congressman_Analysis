@@ -1,6 +1,5 @@
 package com.roadking.congress.controller;
 
-import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.domain.Sns;
 import com.roadking.congress.service.SnsService;
 import lombok.RequiredArgsConstructor;

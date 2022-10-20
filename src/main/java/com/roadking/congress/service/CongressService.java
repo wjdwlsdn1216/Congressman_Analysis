@@ -3,7 +3,6 @@ package com.roadking.congress.service;
 import com.roadking.congress.controller.SearchDto;
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.repository.CongressmanRepository;
-import com.roadking.congress.repository.congressman.dto.CongressmanFlatDto;
 import com.roadking.congress.repository.congressman.queryrepository.CongressmanQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
