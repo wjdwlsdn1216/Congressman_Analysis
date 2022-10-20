@@ -1,12 +1,11 @@
 package com.roadking.congress.domain;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
 public class Sns {
     //출처: 국회의원 SNS정보 (국회 OpenApi)
 
