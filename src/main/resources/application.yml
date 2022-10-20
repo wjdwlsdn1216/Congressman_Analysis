@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://gohard.iptime.org:5432/roadking_db
+    url: jdbc:postgresql://gohard.iptime.org:5433/roadking_db
     username: roadking
     password: roadking123
     driver-class-name: org.postgresql.Driver

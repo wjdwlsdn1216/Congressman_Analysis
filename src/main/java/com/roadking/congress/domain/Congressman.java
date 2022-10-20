@@ -61,6 +61,10 @@ public class Congressman {
         this.assemAddr = assemAddr;
     }
 
+    public Congressman(String name) {
+        this.name = name;
+    }
+
     //HG_NM	이름
     private String name;
     //HJ_NM	한자명
