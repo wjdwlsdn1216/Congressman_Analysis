@@ -5,23 +5,10 @@
 <div id="page-wrapper">
     <div th:replace="fragments/bodyHeader::bodyHeader"/>
     <div class="content-container">
-        <table id="table">
+        <table>
             <tr>
                 <th>이름</th>
                 <td th:text="${congressman.name}"></td>
-            </tr>
-            </tr>
-            <tr>
-                <th>한자명</th>
-                <td th:text="${congressman.hjName}"></td>
-            </tr>
-            <tr>
-                <th>영문명칭</th>
-                <td th:text="${congressman.enName}"></td>
-            </tr>
-            <tr>
-                <th>음양력</th>
-                <td th:text="${congressman.bthGbnNm}"></td>
             </tr>
             <tr>
                 <th>생년월일</th>
@@ -76,28 +63,8 @@
                 <td th:text="${congressman.homepage}"></td>
             </tr>
             <tr>
-                <th>보좌관</th>
-                <td th:text="${congressman.staff}"></td>
-            </tr>
-            <tr>
-                <th>비서관</th>
-                <td th:text="${congressman.secretary}"></td>
-            </tr>
-            <tr>
-                <th>비서</th>
-                <td th:text="${congressman.secretary2}"></td>
-            </tr>
-            <tr>
-                <th>국회의원코드</th>
-                <td th:text="${congressman.monaCd}"></td>
-            </tr>
-            <tr>
                 <th>약력</th>
                 <td th:utext="${congressman.memTitle}"></td>
-            </tr>
-            <tr>
-                <th>사무실호실</th>
-                <td th:text="${congressman.assemAddr}"></td>
             </tr>
             <tr>
                 <th>sns</th>
@@ -109,7 +76,6 @@
             </tr>
         </table>
     </div>
-
     <th:block th:replace="fragments/footer::footer"/>
 </div>
 

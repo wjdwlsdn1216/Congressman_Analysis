@@ -28,6 +28,7 @@ header {
     width: 100%;
     text-align: center;
     height: 30px;
+    margin-bottom: 10%;
 }
 
 #current-page {
@@ -65,6 +66,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 30px;
+    margin-top: 10%;
 }
 
 #input-name {
@@ -104,7 +106,7 @@ footer {
 
 .content-container {
     text-align: center;
-    margin: 10%;
+    margin: 5%;
     box-shadow: 3px 3px 3px 3px #c2c2c2;
 }
 
