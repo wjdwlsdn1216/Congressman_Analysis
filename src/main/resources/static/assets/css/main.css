@@ -99,6 +99,11 @@ footer {
     display: block;
 }
 
+#word_cloud {
+    margin: auto;
+    width: 80%;
+}
+
 /* wrapper */
 #content-wrapper {
     margin-top: 15%;

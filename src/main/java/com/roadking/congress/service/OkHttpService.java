@@ -14,10 +14,10 @@ public class OkHttpService {
 
     public String client(MultipartFile multipartFile) throws IOException {
 	//mac local 경로
-//        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/images/upload/";
+        String basePath = "/Users/anyone/Desktop/git/Congressman_Analysis/src/main/resources/static/images/upload/";
 	
 	//linux 서버컴 경로
-        String basePath = "/works/Congressman_Analysis/src/main/resources/static/images/upload/";
+//        String basePath = "/works/Congressman_Analysis/src/main/resources/static/images/upload/";
 
         String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();
         File file = new File(basePath, uuidFileName);

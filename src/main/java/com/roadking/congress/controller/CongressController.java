@@ -140,6 +140,10 @@ public class CongressController {
         //닮은꼴 의원 나온수 증가
         congressService.updateSimilarView(congressman);
 
+        //결과많이 나온 의원수 top5 조회
+        List<Congressman> scons = congressService.findOrderbySimilarView();
+
+        model.addAttribute("scons", scons);
         model.addAttribute("resultPerson", replacedResultPerson);
         model.addAttribute("similarPercent", similarPercent);
         model.addAttribute("currentPage", "similar");
