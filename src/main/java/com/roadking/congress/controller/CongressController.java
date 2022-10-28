@@ -94,7 +94,7 @@ public class CongressController {
     }
 
     //의원 상세보기
-    @GetMapping("/congressman/detail") //mona_cd 로 의원 찾게 바꿔야함
+    @GetMapping("/congressman/detail")
     public String detail(@RequestParam(required = false) String name, @RequestParam(required = false) Long id, Model model) {
         Congressman congressman;
         if (id != null) {
@@ -105,11 +105,9 @@ public class CongressController {
         }
 
         //조회수 1상승
-//        congressService.updateView(congressman.getId());
         congressService.updateView(congressman);
 
         //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
-//        congressman.setMemTitle(replaced);
         congressman.replaceMem();
 
         model.addAttribute("congressman", congressman);
