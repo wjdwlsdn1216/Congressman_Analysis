@@ -4,78 +4,88 @@
 <body>
 <div id="page-wrapper">
     <div th:replace="fragments/bodyHeader::bodyHeader"/>
-    <div class="content-container">
-        <table>
-            <tr>
-                <th>이름</th>
-                <td th:text="${congressman.name}"></td>
-            </tr>
-            <tr>
-                <th>생년월일</th>
-                <td th:text="${congressman.bthDate}"></td>
-            </tr>
-            <tr>
-                <th>직책명</th>
-                <td th:text="${congressman.jobResNm}"></td>
-            </tr>
-            <tr>
-                <th>정당명</th>
-                <td th:text="${congressman.polyNm}"></td>
-            </tr>
-            <tr>
-                <th>선거구</th>
-                <td th:text="${congressman.origNm}"></td>
-            </tr>
-            <tr>
-                <th>선거구구분</th>
-                <td th:text="${congressman.electGbnNm}"></td>
-            </tr>
-            <tr>
-                <th>대표위원회</th>
-                <td th:text="${congressman.cmitNm}"></td>
-            </tr>
-            <tr>
-                <th>소속위원회목록</th>
-                <td th:text="${congressman.cmits}"></td>
-            </tr>
-            <tr>
-                <th>재선</th>
-                <td th:text="${congressman.reeleGbnNm}"></td>
-            </tr>
-            <tr>
-                <th>당선</th>
-                <td th:text="${congressman.units}"></td>
-            </tr>
-            <tr>
-                <th>성별</th>
-                <td th:text="${congressman.sex}"></td>
-            </tr>
-            <tr>
-                <th>전화번호</th>
-                <td th:text="${congressman.telNo}"></td>
-            </tr>
-            <tr>
-                <th>이메일</th>
-                <td th:text="${congressman.email}"></td>
-            </tr>
-            <tr>
-                <th>홈페이지</th>
-                <td th:text="${congressman.homepage}"></td>
-            </tr>
-            <tr>
-                <th>약력</th>
-                <td th:utext="${congressman.memTitle}"></td>
-            </tr>
-            <tr>
-                <th>sns</th>
-                <td><a th:if="${congressman.sns.blogUrl != 'null'}" th:href="@{${congressman.sns.blogUrl}}"><img src="/images/blog.png"></a>
-                    <a th:if="${congressman.sns.utubeUrl != 'null'}" th:href="@{${congressman.sns.utubeUrl}}"><img src="/images/utube.png"></a>
-                    <a th:if="${congressman.sns.twitterUrl != 'null'}" th:href="@{${congressman.sns.twitterUrl}}"><img src="/images/twitter.png"></a>
-                    <a th:if="${congressman.sns.facebookUrl != 'null'}" th:href="@{${congressman.sns.facebookUrl}}"><img src="/images/facebook.png"></a>
-                </td>
-            </tr>
-        </table>
+    <div class="detail_head_container">
+        <div class="detail_head_img">
+            <img class="detail_img" th:src="@{${'/images/profile/'+congressman.name+'.jpeg'}}">
+        </div>
+        <div class="detail_head_text">
+            <h5 th:text="${congressman.name}" style="margin-left: 10%;"></h5>
+            <table class="detail_table">
+                <tr>
+                    <th>생년월일</th>
+                    <td th:text="${congressman.bthDate}"></td>
+                </tr>
+                <tr>
+                    <th>직책명</th>
+                    <td th:text="${congressman.jobResNm}"></td>
+                </tr>
+                <tr>
+                    <th>정당명</th>
+                    <td th:text="${congressman.polyNm}"></td>
+                </tr>
+            </table>
+        </div>
     </div>
+
+    <table class="detail_table">
+        <tr>
+            <th>선거구</th>
+            <td th:text="${congressman.origNm}"></td>
+        </tr>
+        <tr>
+            <th>선거구구분</th>
+            <td th:text="${congressman.electGbnNm}"></td>
+        </tr>
+        <tr>
+            <th>대표위원회</th>
+            <td th:text="${congressman.cmitNm}"></td>
+        </tr>
+        <tr>
+            <th>소속위원회목록</th>
+            <td th:text="${congressman.cmits}"></td>
+        </tr>
+        <tr>
+            <th>재선</th>
+            <td th:text="${congressman.reeleGbnNm}"></td>
+        </tr>
+        <tr>
+            <th>당선</th>
+            <td th:text="${congressman.units}"></td>
+        </tr>
+        <tr>
+            <th>성별</th>
+            <td th:text="${congressman.sex}"></td>
+        </tr>
+        <tr>
+            <th>전화번호</th>
+            <td th:text="${congressman.telNo}"></td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td th:text="${congressman.email}"></td>
+        </tr>
+        <tr>
+            <th>홈페이지</th>
+            <td><a th:if="${congressman.homepage != 'null'}" th:href="@{${congressman.homepage}}"
+                   th:text="${congressman.homepage}" style="text-decoration: none; color: black"></a></td>
+        </tr>
+        <tr>
+            <th>약력</th>
+            <td th:utext="${congressman.memTitle}"></td>
+        </tr>
+        <tr>
+            <th>sns</th>
+            <td><a th:if="${congressman.sns.blogUrl != 'null'}" th:href="@{${congressman.sns.blogUrl}}"><img
+                    src="/images/blog.png"></a>
+                <a th:if="${congressman.sns.utubeUrl != 'null'}" th:href="@{${congressman.sns.utubeUrl}}"><img
+                        src="/images/utube.png"></a>
+                <a th:if="${congressman.sns.twitterUrl != 'null'}" th:href="@{${congressman.sns.twitterUrl}}"><img
+                        src="/images/twitter.png"></a>
+                <a th:if="${congressman.sns.facebookUrl != 'null'}" th:href="@{${congressman.sns.facebookUrl}}"><img
+                        src="/images/facebook.png"></a>
+            </td>
+        </tr>
+    </table>
     <th:block th:replace="fragments/footer::footer"/>
 </div>
 
