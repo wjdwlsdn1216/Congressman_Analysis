@@ -24,7 +24,8 @@
                      th:src="@{${'/images/profile/'+resultPerson+'.jpeg'}}">
             </a>
             <br>
-            <p style="font-size: medium"><span id="percent" th:text="${similarPercent}"></span>% 확률로 <span th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
+            <p style="font-size: medium"><span id="percent" th:text="${similarPercent}"></span>% 확률로 <span
+                    th:text="${resultPerson}" style="font-weight: bold"></span> 의원 입니다!</p>
 
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -41,6 +42,38 @@
                 </div>
             </div>
             <br>
+            <br>
+
+            <div>
+                <p style="font-size: large; font-weight: bold; margin: 0;"><span th:text="${resultPerson}"></span> 의원의
+                    키워드</p>
+                <img id="word_cloud" th:src="@{${'/images/wordcloud/'+resultPerson+'.png'}}">
+            </div>
+        </div>
+
+        <div class="rank-container">
+            <div class="table-container">
+                <table class="rank_table" style="margin: auto; width: 75%">
+                    <thead>
+                    <tr>
+                        <th colspan="3">자주 나온 의원 랭킹</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <th>랭킹</th>
+                        <th>이름</th>
+                        <th>나온수</th>
+                    </tr>
+
+                    <tbody>
+                    <tr th:each="scon : ${scons}">
+                        <td th:text="${sconStat.count}"></td>
+                        <td th:text="${scon.name}"></td>
+                        <td th:text="${scon.similarView}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
