@@ -25,9 +25,6 @@ public class CongressController {
 
     private final CongressService congressService;
     private final SnsService snsService;
-    private final FileService fileService;
-    private final HttpFileService httpFileService;
-    private final HttpMultifileService httpMultifileService;
     private final OkHttpService okHttpService;
 
     //출처: 국회의원 인적사항 (국회 OpenApi)
