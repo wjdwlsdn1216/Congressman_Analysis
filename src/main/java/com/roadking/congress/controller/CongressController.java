@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,9 +24,6 @@ public class CongressController {
 
     private final CongressService congressService;
     private final SnsService snsService;
-    private final FileService fileService;
-    private final HttpFileService httpFileService;
-    private final HttpMultifileService httpMultifileService;
     private final OkHttpService okHttpService;
 
     //출처: 국회의원 인적사항 (국회 OpenApi)

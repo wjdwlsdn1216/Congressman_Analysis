@@ -3,7 +3,6 @@ package com.roadking.congress.service;
 import com.roadking.congress.controller.SearchDto;
 import com.roadking.congress.domain.Congressman;
 import com.roadking.congress.repository.CongressmanRepository;
-import com.roadking.congress.repository.congressman.queryrepository.CongressmanQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,6 @@ import java.util.List;
 public class CongressService {
 
     private final CongressmanRepository congressmanRepository;
-    private final CongressmanQueryRepository congressmanQueryRepository;
 
     //저장
     @Transactional
@@ -47,7 +45,6 @@ public class CongressService {
 
     @Transactional
     public void updateView(Congressman congressman) {
-//        congressmanRepository.updateView(id);
         congressman.viewUp();
     }
 
@@ -62,7 +59,6 @@ public class CongressService {
     //더티체킹 방식으로 업데이트
     @Transactional
     public void updateSimilarView(Congressman congressman) {
-//        congressman.setSimilarView(congressman.getSimilarView()+1);
         congressman.similarViewUp();
     }
 
