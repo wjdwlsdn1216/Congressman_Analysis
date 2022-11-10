@@ -75,13 +75,17 @@
         </tr>
         <tr>
             <th>sns</th>
-            <td><a th:if="${congressman.sns.blogUrl != 'null'}" th:href="@{${congressman.sns.blogUrl}}"><img
+            <td><a th:if="${congressman.sns.blogUrl != 'null'}" th:href="@{${congressman.sns.blogUrl}}"
+                   onclick="window.open(this.href, '_blank'); return false;"><img
                     src="/images/blog.png"></a>
-                <a th:if="${congressman.sns.utubeUrl != 'null'}" th:href="@{${congressman.sns.utubeUrl}}"><img
+                <a th:if="${congressman.sns.utubeUrl != 'null'}" th:href="@{${congressman.sns.utubeUrl}}"
+                   onclick="window.open(this.href, '_blank'); return false;"><img
                         src="/images/utube.png"></a>
-                <a th:if="${congressman.sns.twitterUrl != 'null'}" th:href="@{${congressman.sns.twitterUrl}}"><img
+                <a th:if="${congressman.sns.twitterUrl != 'null'}" th:href="@{${congressman.sns.twitterUrl}}"
+                   onclick="window.open(this.href, '_blank'); return false;"><img
                         src="/images/twitter.png"></a>
-                <a th:if="${congressman.sns.facebookUrl != 'null'}" th:href="@{${congressman.sns.facebookUrl}}"><img
+                <a th:if="${congressman.sns.facebookUrl != 'null'}" th:href="@{${congressman.sns.facebookUrl}}"
+                   onclick="window.open(this.href, '_blank'); return false;"><img
                         src="/images/facebook.png"></a>
             </td>
         </tr>
