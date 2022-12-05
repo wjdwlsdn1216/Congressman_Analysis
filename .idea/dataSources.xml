@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="roadking_db@gohard.iptime.org" uuid="6c4ba86f-1e86-4288-8225-790e4aa3b2cd">
-      <driver-ref>postgresql</driver-ref>
+    <data-source source="LOCAL" name="ROADKING" uuid="ba9f6a8e-e5f3-4216-89ae-734878ddbedb">
+      <driver-ref>oracle.19</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://gohard.iptime.org:5432/roadking_db</jdbc-url>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.ap-chuncheon-1.oraclecloud.com))(connect_data=(service_name=gb75c9302b07ccd_goharddb_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
