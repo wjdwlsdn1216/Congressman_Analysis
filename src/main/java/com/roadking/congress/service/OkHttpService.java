@@ -24,11 +24,20 @@ public class OkHttpService {
         multipartFile.transferTo(file);
 
         OkHttpClient okHttpClient = new OkHttpClient();
+
+//        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+//                .addFormDataPart("file", file.getName(), RequestBody.create(file, MediaType.parse("image")))
+//                .build();
+//
+//        Request request = new Request.Builder().url("http://localhost:8080/v1/upload")
+//                .post(requestBody).build();
         Request request = new Request.Builder()
                 .addHeader("fileName", file.getName())
                 .url("http://172.17.0.2:80/")
-                .post(RequestBody.create(MediaType.parse("image"), file))
+                .post(RequestBody.create(file, MediaType.parse("image")))
                 .build();
+
+
 
         Response response = okHttpClient.newCall(request).execute();
 
