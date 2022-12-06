@@ -26,7 +26,7 @@ public class Congressman {
     }
     //의원 디테일 조회수 +1
     public void viewUp() {
-        this.view = this.view + 1;
+        this.viewCnt = this.viewCnt + 1;
     }
 
     //\r 로 저장되어있는 문자를 <br>로 바꿔서 화면에는 줄바꿈해서 나오게 수정
@@ -112,7 +112,7 @@ public class Congressman {
     //ASSEM_ADDR	사무실호실
     private String assemAddr;
     //조회수
-    private int view;
+    private int viewCnt;
     //닮은꼴 결과수
     private int similarView;
 }
