@@ -26,7 +26,7 @@ public class OkHttpService {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .addHeader("fileName", file.getName())
-                .url("https://8a6e-221-156-19-39.jp.ngrok.io/predict")
+                .url("http://172.17.0.2:80/")
                 .post(RequestBody.create(MediaType.parse("image"), file))
                 .build();
 
