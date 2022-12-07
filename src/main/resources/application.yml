@@ -28,9 +28,9 @@ spring:
       max-request-size: 50MB
 
 #server 설정
-#server:
+server:
 #  port: 8080
-#  port: 58824 #linux 서버컴 포트
+  port: 50000 #linux 서버컴 포트
 
 logging:
   level:
