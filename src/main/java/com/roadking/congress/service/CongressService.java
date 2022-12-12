@@ -7,7 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @Service
 @Transactional(readOnly = true)
@@ -61,5 +65,24 @@ public class CongressService {
     public void updateSimilarView(Congressman congressman) {
         congressman.similarViewUp();
     }
+
+    // 현재 크롤링한 데이터와 학습된 모델을 날려버려서 ai모델 사용불가 상태로 인한
+    // 랜덤 의원 조회로 대체
+    public Map<Congressman, Long> findRandom() {
+        Random random = new Random(System.currentTimeMillis());
+        long randomNo = random.nextInt(298);
+        long congressmanId = randomNo + 305;
+
+        double percent = random.nextDouble();
+        long randomPercent = Math.round(percent * 100);
+
+        Map<Congressman, Long> map = new HashMap<>();
+        map.put(congressmanRepository.findOne(congressmanId), randomPercent);
+        return map;
+    }
+
+
+
+
 
 }
