@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -118,28 +119,51 @@ public class CongressController {
     }
 
 
-    //    //Okhttp
+    // 현재 크롤링한 데이터와 학습된모델을 날려버려서 ai모델 사용불가 상태
+//    @PostMapping("/congressman/similar")
+//    public String similar(@RequestParam MultipartFile multipartFile, Model model) throws Exception {
+//        String result = okHttpService.client(multipartFile);
+//        JSONObject jsonObject = new JSONObject(result);
+//        String resultPerson = jsonObject.get("class_name").toString();
+//        String similarPercent = jsonObject.get("result").toString();
+//        String replacedResultPerson = resultPerson.replace("의원", "");
+//
+//        System.out.println("resultPerson = " + replacedResultPerson);
+//        System.out.println("similarPercent = " + similarPercent);
+//
+//        Congressman congressman = congressService.findByName(replacedResultPerson);
+//        //닮은꼴 의원 나온수 증가
+//        congressService.updateSimilarView(congressman);
+//
+//        //결과많이 나온 의원수 top5 조회
+//        List<Congressman> scons = congressService.findOrderbySimilarView();
+//
+//        model.addAttribute("scons", scons);
+//        model.addAttribute("resultPerson", replacedResultPerson);
+//        model.addAttribute("similarPercent", similarPercent);
+//        model.addAttribute("currentPage", "similar");
+//
+//        return "congressman/congressmanSimilar";
+//    }
+
     @PostMapping("/congressman/similar")
-    public String similar(@RequestParam MultipartFile multipartFile, Model model) throws Exception {
-        String result = okHttpService.client(multipartFile);
-        JSONObject jsonObject = new JSONObject(result);
-        String resultPerson = jsonObject.get("class_name").toString();
-        String similarPercent = jsonObject.get("result").toString();
-        String replacedResultPerson = resultPerson.replace("의원", "");
+    public String similar(Model model) {
 
-        System.out.println("resultPerson = " + replacedResultPerson);
-        System.out.println("similarPercent = " + similarPercent);
+        // 현재 크롤링한 데이터와 학습된 모델을 날려버려서 ai모델 사용불가 상태로 인한
+        // 랜덤 의원 조회로 대체
+        Map<Congressman, Long> map = congressService.findRandom();
+        for (Congressman congressman : map.keySet()) {
+            //닮은꼴 의원 나온수 증가
+            congressService.updateSimilarView(congressman);
 
-        Congressman congressman = congressService.findByName(replacedResultPerson);
-        //닮은꼴 의원 나온수 증가
-        congressService.updateSimilarView(congressman);
+            model.addAttribute("resultPerson", congressman.getName());
+            model.addAttribute("similarPercent", map.get(congressman));
+        }
 
         //결과많이 나온 의원수 top5 조회
         List<Congressman> scons = congressService.findOrderbySimilarView();
 
         model.addAttribute("scons", scons);
-        model.addAttribute("resultPerson", replacedResultPerson);
-        model.addAttribute("similarPercent", similarPercent);
         model.addAttribute("currentPage", "similar");
 
         return "congressman/congressmanSimilar";
