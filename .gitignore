@@ -207,4 +207,6 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+# 설정정보
+application-secret.yml
 
